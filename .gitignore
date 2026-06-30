@@ -3,6 +3,9 @@ data/db.json
 data/db.json.bak
 *.bak
 
+# Credenciais do banco (MySQL) — NUNCA versionar
+admin/config.php
+
 # Ferramentas locais
 .claude/
 
