@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#15110e;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  ::selection{background:#c9a575;color:#fff}
+  [data-anim] .rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  [data-anim] .rv.in{opacity:1;transform:none}
+  [data-anim] .rv-d1{transition-delay:.1s}
+  [data-anim] .rv-d2{transition-delay:.2s}
+  [data-anim] .rv-d3{transition-delay:.3s}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .led-row:hover{background:rgba(163,136,107,.08);padding-left:18px!important}
+  .led-row:hover .led-num{color:#a3886b!important}
+  /* ───────── responsivo mobile ───────── */
+  @media (max-width:820px){
+    section{overflow-x:hidden}
+    [style*="grid-template-columns"]{grid-template-columns:1fr!important;gap:26px!important}
+    [style*="px 40px"]{padding-left:20px!important;padding-right:20px!important}
+    [style*="padding: 36px"]{padding:22px!important}
+    /* nav do topo quebra linha */
+    [id="1b"] header{flex-wrap:wrap!important;gap:14px!important;justify-content:center!important;text-align:center}
+    [id="1b"] header nav{gap:16px!important;flex-wrap:wrap!important;justify-content:center!important}
+    [id="1b"] #b-servicos > div[style*="sticky"]{position:static!important}
+    /* "sobre" full-bleed: imagem em cima, texto embaixo */
+    #b-sobre{background:#15110e}
+    #b-sobre img{height:300px!important}
+    #b-sobre > div:nth-of-type(1){display:none!important}
+    #b-sobre > div:nth-of-type(2){position:relative!important;inset:auto!important;padding:30px 0!important}
+  }
+</style>
+</helmet>
+<div ref="{{ setRoot }}" style="background:#15110e">
+
+  <!-- ============================================================= -->
+  <!-- OPTION 1B — "MOVIMENTO" — bold, grotesque, timeline, full-bleed -->
+  <!-- ============================================================= -->
+  <section id="1b" style="position:relative;background:#15110e;color:#ece5db">
+    <div style="position:sticky;top:14px;z-index:60;display:flex;justify-content:flex-start;padding-left:26px;pointer-events:none">
+      <span style="pointer-events:auto;background:#d4b483;color:#15110e;font-size:11px;letter-spacing:.2em;font-weight:700;padding:7px 13px;border-radius:999px">1B · MOVIMENTO</span>
+    </div>
+
+    <!-- nav -->
+    <header style="max-width:1280px;margin:0 auto;margin-top:-34px;padding:18px 40px 8px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5">
+      <div style="line-height:1">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600">Érika Lima</div>
+        <div style="font-size:9px;letter-spacing:.42em;color:#d4b483;font-weight:600;margin-top:5px">CONSULTORIA CONTÁBIL</div>
+      </div>
+      <nav style="display:flex;align-items:center;gap:30px">
+        <a href="#b-servicos" style="color:#b3a99c;text-decoration:none;font-size:14px;font-weight:500">Serviços</a>
+        <a href="#b-sobre" style="color:#b3a99c;text-decoration:none;font-size:14px;font-weight:500">Sobre</a>
+        <a href="#b-contato" style="color:#b3a99c;text-decoration:none;font-size:14px;font-weight:500">Contato</a>
+        <a href="#b-contato" style="background:#d4b483;color:#15110e;text-decoration:none;font-size:14px;font-weight:700;padding:11px 20px;border-radius:6px">Falar agora</a>
+      </nav>
+    </header>
+
+    <!-- hero -->
+    <div style="position:relative;overflow:hidden">
+      <div style="position:absolute;top:-220px;right:-160px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(212,180,131,.18),transparent 64%)"></div>
+      <div style="max-width:1280px;margin:0 auto;padding:48px 40px 70px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;position:relative">
+        <div class="rv">
+          <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(52px,7vw,108px);line-height:.92;letter-spacing:-.03em;margin:0">segurança contábil para o seu negócio <span style="color:#d4b483">crescer.</span></h1>
+          <p style="font-size:18.5px;line-height:1.65;color:#b3a99c;max-width:480px;margin:30px 0 36px">Da abertura ao planejamento tributário — mantenho sua empresa organizada, regular e pronta para os próximos passos.</p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <a href="#b-contato" style="background:#d4b483;color:#15110e;text-decoration:none;font-size:15px;font-weight:700;padding:16px 32px;border-radius:8px">Falar no WhatsApp</a>
+            <a href="#b-servicos" style="border:1px solid rgba(236,229,219,.25);color:#ece5db;text-decoration:none;font-size:15px;font-weight:600;padding:16px 32px;border-radius:8px">Ver serviços</a>
+          </div>
+        </div>
+        <div class="rv rv-d1" style="position:relative">
+          <div style="position:absolute;inset:-16px -16px 26px 26px;border:1.5px solid rgba(212,180,131,.5);border-radius:14px"></div>
+          <div style="position:relative;border-radius:12px;overflow:hidden;box-shadow:0 50px 90px -38px rgba(0,0,0,.85)">
+            <img src="assets/contadora.jpg" alt="Érika Lima" style="display:block;width:100%;height:520px;object-fit:cover">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- marquee -->
+    <div style="border-top:1px solid rgba(236,229,219,.12);border-bottom:1px solid rgba(236,229,219,.12);overflow:hidden;padding:18px 0;background:#1b1611">
+      <div style="display:flex;gap:0;width:max-content;animation:marq 26s linear infinite">
+        <div style="display:flex;gap:0">
+          <sc-for list="{{ publicosLoop }}" as="p" hint-placeholder-count="10"><span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:26px;color:#ece5db;padding:0 26px">{{ p }}</span><span style="color:#d4b483;font-size:26px;align-self:center">✦</span></sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- serviços: sticky split + timeline -->
+    <div id="b-servicos" style="max-width:1280px;margin:0 auto;padding:96px 40px;display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:start">
+      <div class="rv" style="position:sticky;top:40px">
+        <div style="font-size:11px;letter-spacing:.32em;color:#d4b483;font-weight:600;margin-bottom:16px">SERVIÇOS</div>
+        <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(34px,4.4vw,60px);line-height:.98;letter-spacing:-.02em;margin:0 0 22px">como eu cuido do seu negócio</h2>
+        <p style="font-size:16.5px;line-height:1.65;color:#9d9384;margin:0 0 28px">Um acompanhamento completo, do registro à estratégia, sempre dentro da lei.</p>
+        <a href="#b-contato" style="display:inline-block;background:#d4b483;color:#15110e;text-decoration:none;font-size:14px;font-weight:700;padding:13px 26px;border-radius:6px">Solicitar orçamento</a>
+      </div>
+      <div style="position:relative;padding-left:8px">
+        <div style="position:absolute;left:33px;top:30px;bottom:30px;width:2px;background:linear-gradient(180deg,rgba(212,180,131,.5),rgba(212,180,131,.08))"></div>
+        <sc-for list="{{ servicos }}" as="s" hint-placeholder-count="6">
+          <div class="rv" style="position:relative;display:flex;gap:26px;align-items:flex-start;padding:18px 0">
+            <span style="flex:none;width:52px;height:52px;border-radius:50%;background:#15110e;border:1.5px solid #d4b483;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;color:#d4b483;position:relative;z-index:1">{{ s.n }}</span>
+            <div style="padding-top:5px">
+              <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:23px;margin:0 0 8px;color:#f3ede4;letter-spacing:-.01em">{{ s.titulo }}</h3>
+              <p style="font-size:15px;line-height:1.62;color:#9d9384;margin:0;max-width:440px">{{ s.desc }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- sobre full-bleed -->
+    <div id="b-sobre" class="rv" style="position:relative">
+      <img src="assets/contadora.jpg" alt="Érika Lima" style="display:block;width:100%;height:600px;object-fit:cover;object-position:center 25%">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(21,17,14,.92) 0%,rgba(21,17,14,.72) 38%,rgba(21,17,14,.15) 100%)"></div>
+      <div style="position:absolute;inset:0;display:flex;align-items:center">
+        <div style="max-width:1280px;margin:0 auto;padding:0 40px;width:100%">
+          <div style="max-width:560px">
+            <div style="font-size:11px;letter-spacing:.32em;color:#d4b483;font-weight:600;margin-bottom:18px">SOBRE A ÉRIKA</div>
+            <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(32px,4vw,54px);line-height:1.0;letter-spacing:-.02em;margin:0 0 22px">uma gestão bem estruturada é o primeiro passo para o sucesso.</h2>
+            <p style="font-size:17.5px;line-height:1.7;color:#cabfb1;margin:0 0 28px">Meu objetivo é ajudar empreendedores a manterem seus negócios organizados, regularizados e preparados para crescer com segurança.</p>
+            <div style="display:flex;align-items:center;gap:16px">
+              <span style="font-family:'Cormorant Garamond',serif;font-size:34px;font-style:italic;color:#f3ede4">Érika Lima</span>
+              <span style="width:40px;height:1px;background:#d4b483"></span>
+              <span style="font-size:11px;letter-spacing:.26em;color:#b3a99c;font-weight:600">CONTADORA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- diferenciais: linhas grandes -->
+    <div id="b-dif" style="max-width:1280px;margin:0 auto;padding:96px 40px">
+      <h2 class="rv" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(32px,4vw,56px);letter-spacing:-.02em;margin:0 0 50px">por que me escolher</h2>
+      <sc-for list="{{ diferenciais }}" as="d" hint-placeholder-count="4">
+        <div class="rv" style="display:grid;grid-template-columns:160px 1fr;gap:30px;align-items:center;padding:34px 0;border-top:1px solid rgba(236,229,219,.13)">
+          <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(56px,7vw,104px);line-height:.8;color:transparent;-webkit-text-stroke:1.5px rgba(212,180,131,.55)">{{ d.n }}</span>
+          <div style="display:grid;grid-template-columns:1fr 1.3fr;gap:28px;align-items:baseline">
+            <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(22px,2.4vw,32px);margin:0;color:#f3ede4;letter-spacing:-.01em">{{ d.titulo }}</h3>
+            <p style="font-size:16px;line-height:1.6;color:#9d9384;margin:0">{{ d.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+      <div style="border-top:1px solid rgba(236,229,219,.13)"></div>
+    </div>
+
+    <!-- depoimento destaque -->
+    <div class="rv" style="background:#1b1611;border-top:1px solid rgba(212,180,131,.18);border-bottom:1px solid rgba(212,180,131,.18)">
+      <div style="max-width:1000px;margin:0 auto;padding:96px 40px;text-align:center">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:60px;color:#d4b483;line-height:.4;height:30px">“</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(26px,3.4vw,44px);line-height:1.28;margin:0 0 28px;color:#f3ede4">{{ featured.texto }}</p>
+        <div style="font-weight:700;font-size:14.5px;color:#d4b483;letter-spacing:.04em">{{ featured.nome }} · {{ featured.papel }}</div>
+      </div>
+    </div>
+
+    <!-- contato -->
+    <div id="b-contato" style="position:relative;overflow:hidden">
+      <div style="position:absolute;bottom:-180px;left:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(212,180,131,.16),transparent 64%)"></div>
+      <div style="max-width:1280px;margin:0 auto;padding:96px 40px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;position:relative">
+        <div class="rv">
+          <div style="font-size:11px;letter-spacing:.32em;color:#d4b483;font-weight:600;margin-bottom:16px">CONTATO</div>
+          <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(38px,4.8vw,66px);line-height:.96;letter-spacing:-.02em;margin:0 0 24px">vamos organizar o seu negócio?</h2>
+          <p style="font-size:17px;line-height:1.7;color:#b3a99c;max-width:420px;margin:0 0 34px">Entre em contato e descubra como posso ajudar sua empresa a crescer de forma estratégica.</p>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="display:flex;align-items:center;gap:14px"><span style="width:42px;height:42px;border-radius:8px;background:#1b1611;border:1px solid rgba(212,180,131,.3);display:flex;align-items:center;justify-content:center;color:#d4b483">✆</span><div><div style="font-size:10.5px;letter-spacing:.18em;color:#d4b483;font-weight:600">WHATSAPP</div><div style="font-weight:600">(00) 00000-0000</div></div></div>
+            <div style="display:flex;align-items:center;gap:14px"><span style="width:42px;height:42px;border-radius:8px;background:#1b1611;border:1px solid rgba(212,180,131,.3);display:flex;align-items:center;justify-content:center;color:#d4b483">✉</span><div><div style="font-size:10.5px;letter-spacing:.18em;color:#d4b483;font-weight:600">E-MAIL</div><div style="font-weight:600"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="54373b3a2035203b1431263d3f35383d39357a373b397a3626">[email&#160;protected]</a></div></div></div>
+          </div>
+        </div>
+        <div class="rv rv-d1" style="background:#1b1611;border:1px solid rgba(236,229,219,.1);border-radius:14px;padding:36px;box-shadow:0 40px 80px -40px rgba(0,0,0,.85)">
+          <sc-if value="{{ sentB }}" hint-placeholder-val="{{ false }}">
+            <div style="text-align:center;padding:40px 8px">
+              <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:44px;color:#d4b483;font-weight:700">✓</div>
+              <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-size:26px;margin:10px 0 8px;color:#f3ede4">Mensagem enviada!</h3>
+              <p style="color:#9d9384;margin:0">Em breve a Érika entra em contato com você.</p>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notSentB }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ submitB }}">
+              <label style="display:block;font-size:11.5px;letter-spacing:.1em;color:#9d9384;font-weight:600;margin-bottom:7px">NOME</label>
+              <input required placeholder="Seu nome" style="width:100%;border:1px solid rgba(236,229,219,.18);border-radius:8px;padding:13px 15px;font-size:15px;font-family:inherit;margin-bottom:18px;background:#15110e;color:#ece5db">
+              <label style="display:block;font-size:11.5px;letter-spacing:.1em;color:#9d9384;font-weight:600;margin-bottom:7px">WHATSAPP</label>
+              <input required placeholder="(00) 00000-0000" style="width:100%;border:1px solid rgba(236,229,219,.18);border-radius:8px;padding:13px 15px;font-size:15px;font-family:inherit;margin-bottom:18px;background:#15110e;color:#ece5db">
+              <label style="display:block;font-size:11.5px;letter-spacing:.1em;color:#9d9384;font-weight:600;margin-bottom:7px">COMO POSSO AJUDAR?</label>
+              <textarea rows="3" placeholder="Conte um pouco sobre o seu negócio" style="width:100%;border:1px solid rgba(236,229,219,.18);border-radius:8px;padding:13px 15px;font-size:15px;font-family:inherit;margin-bottom:22px;background:#15110e;color:#ece5db;resize:vertical"></textarea>
+              <button type="submit" style="width:100%;background:#d4b483;color:#15110e;border:none;border-radius:8px;padding:15px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer">Enviar mensagem</button>
+            </form>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+    <footer style="background:#0f0c0a;border-top:1px solid rgba(236,229,219,.08)">
+      <div style="max-width:1280px;margin:0 auto;padding:44px 40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+        <div style="line-height:1">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#ece5db">Érika Lima</div>
+          <div style="font-size:9px;letter-spacing:.4em;color:#d4b483;font-weight:600;margin-top:5px">CONSULTORIA CONTÁBIL</div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <sc-for list="{{ hashtags }}" as="h" hint-placeholder-count="5"><span style="font-size:12px;color:#9d9384;border:1px solid rgba(236,229,219,.14);border-radius:999px;padding:5px 12px">{{ h }}</span></sc-for>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:12px;color:#6b6258;padding:0 40px 28px">© 2026 Érika Lima Consultoria Contábil · Todos os direitos reservados</div>
+    </footer>
+  </section>
+</div>
+</x-dc>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { sentA: false, sentB: false, sentC: false, sentD: false, openFaq: 0 };
+
+  setRoot = (el) => { this._root = el; };
+
+  componentDidMount() {
+    requestAnimationFrame(() => {
+      const root = this._root || document.body;
+      root.setAttribute('data-anim', '');
+      const els = root.querySelectorAll('.rv');
+      if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('in')); return; }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, { threshold: 0.1, rootMargin: '0px 0px -7% 0px' });
+      els.forEach(el => io.observe(el));
+    });
+  }
+
+  submitA = (e) => { e.preventDefault(); this.setState({ sentA: true }); };
+  submitB = (e) => { e.preventDefault(); this.setState({ sentB: true }); };
+  submitC = (e) => { e.preventDefault(); this.setState({ sentC: true }); };
+  submitD = (e) => { e.preventDefault(); this.setState({ sentD: true }); };
+  toggleFaq = (i) => () => this.setState(s => ({ openFaq: s.openFaq === i ? null : i }));
+
+  renderVals() {
+    const servicos = [
+      { n: '01', titulo: 'Abertura e Regularização', desc: 'Abertura, legalização e regularização de empresas de todos os portes, com a documentação completa e em dia.' },
+      { n: '02', titulo: 'MEI e Simples Nacional', desc: 'Enquadramento, gestão e acompanhamento do MEI e do Simples Nacional para você pagar menos, dentro da lei.' },
+      { n: '03', titulo: 'Alterações Cadastrais e Societárias', desc: 'Mudança de endereço, atividade, quadro de sócios e contrato social conduzidas com segurança.' },
+      { n: '04', titulo: 'Consultoria Empresarial', desc: 'Orientação estratégica para organizar processos e fazer o seu negócio crescer com previsibilidade.' },
+      { n: '05', titulo: 'Planejamento Tributário', desc: 'Planejamento e orientação tributária para reduzir a carga de impostos de forma legal e inteligente.' },
+      { n: '06', titulo: 'Imposto de Renda Rural e PF', desc: 'Declaração de Imposto de Renda para produtores rurais e pessoa física, sem dor de cabeça.' },
+    ];
+    const diferenciais = [
+      { n: '01', titulo: 'Atendimento próximo', desc: 'Comunicação clara, humana e direta — você sempre sabe o que está acontecendo.' },
+      { n: '02', titulo: 'Conformidade total', desc: 'Sua empresa regular e dentro da lei, evitando multas e surpresas.' },
+      { n: '03', titulo: 'Visão estratégica', desc: 'Mais que cumprir obrigações: orientação para o seu negócio crescer.' },
+      { n: '04', titulo: 'Segurança e sigilo', desc: 'Cuidado e confidencialidade em cada informação do seu negócio.' },
+    ];
+    const depoimentos = [
+      { texto: 'A Érika organizou toda a parte contábil da minha empresa. Hoje durmo tranquilo sabendo que está tudo regular.', nome: 'Cliente', papel: 'Comércio · MEI' },
+      { texto: 'Atendimento atencioso e explicações que eu realmente entendo. Recomendo de olhos fechados.', nome: 'Cliente', papel: 'Prestação de serviços' },
+      { texto: 'O planejamento tributário reduziu meus custos e me deu clareza para investir no crescimento.', nome: 'Cliente', papel: 'Empresa em crescimento' },
+    ];
+    const publicos = ['MEIs', 'Pequenos negócios', 'Empresas em crescimento', 'Produtor rural', 'IR Pessoa Física'];
+    const hashtags = ['#ConsultoriaEmpresarial', '#Contabilidade', '#MEI', '#SimplesNacional', '#GestãoEmpresarial'];
+    const roman = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+    const servicosR = servicos.map((s, i) => ({ ...s, r: roman[i] }));
+    const diferenciaisR = diferenciais.map((d, i) => ({ ...d, r: roman[i] }));
+    const promessas = [
+      { t: 'Sem burocracia', d: 'Cuido de toda a papelada para você focar no que importa: o seu negócio.' },
+      { t: 'Atendimento humano', d: 'Você fala direto comigo, com linguagem clara e sem juridiquês.' },
+      { t: 'Tudo dentro da lei', d: 'Sua empresa sempre regular, em conformidade e livre de surpresas.' },
+    ];
+    const faqsRaw = [
+      { q: 'Você atende empresas de quais portes?', a: 'Atendo desde MEIs e pequenos negócios até empresas em crescimento, além de produtor rural e pessoa física.' },
+      { q: 'O atendimento é presencial ou online?', a: 'Atendo de forma online e presencial, conforme a sua necessidade e localização.' },
+      { q: 'Como funciona a troca de contador?', a: 'Cuido de todo o processo de migração da sua contabilidade, sem burocracia e sem interromper a sua operação.' },
+      { q: 'Quais documentos preciso para abrir minha empresa?', a: 'Te oriento passo a passo. Na maioria dos casos bastam seus documentos pessoais e o endereço da atividade.' },
+    ];
+    const faqs = faqsRaw.map((f, i) => ({ ...f, open: this.state.openFaq === i, sign: this.state.openFaq === i ? '–' : '+', onToggle: this.toggleFaq(i) }));
+
+    return {
+      servicosR, diferenciaisR, promessas, faqs,
+      sentC: this.state.sentC, notSentC: !this.state.sentC, submitC: this.submitC,
+      sentD: this.state.sentD, notSentD: !this.state.sentD, submitD: this.submitD,
+      setRoot: this.setRoot,
+      servicos, diferenciais, depoimentos, publicos,
+      publicosLoop: [...publicos, ...publicos],
+      featured: depoimentos[0],
+      hashtags,
+      sentA: this.state.sentA, notSentA: !this.state.sentA, submitA: this.submitA,
+      sentB: this.state.sentB, notSentB: !this.state.sentB, submitB: this.submitB,
+    };
+  }
+}
+</script>
+</body>
+</html>

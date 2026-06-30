@@ -156,19 +156,18 @@
         ou que permitam iframe).
      ══════════════════════════════════════════════════════════════ */
   const CLIENTS = {
-    /* Os clientes reais são cadastrados pelo painel (admin/ → Entregas & Versões)
-       e salvos no data/db.json, que tem prioridade sobre este objeto.
-       Modelo de um cliente, caso queira cadastrar manualmente aqui:
-
-    'cafe-aurora': {
-      nome: 'Café Aurora',
-      projeto: 'Site institucional',
-      saudacao: 'Preparei estas versões a partir do nosso briefing. Navegue com calma e me diga qual conversa melhor com a sua marca.',
+    'erika-lima': {
+      nome: 'Érika Lima',
+      projeto: 'Landing page · Consultoria Contábil',
+      saudacao: 'Érika, preparei quatro direções de design para a sua landing page, cada uma com uma personalidade própria. Navegue em todas com calma — no computador e no celular — e me diga qual combina mais com a sua marca.',
       versoes: [
-        { titulo: 'Versão 1', data: '01 jul 2026', status: 'analise', url: 'https://link-da-versao.com', preview: true, notas: 'Notas para o cliente.' },
+        { titulo: 'Editorial · O Dossiê', data: '30 jun 2026', status: 'analise', url: 'modelos/erika-lima/landing-1a-editorial.html', preview: true, notas: 'Tom de revista de arquitetura: serifa elegante, índice de serviços e paleta clara em tons de areia. Sofisticada e atemporal.' },
+        { titulo: 'Movimento', data: '30 jun 2026', status: 'analise', url: 'modelos/erika-lima/landing-1b-premium.html', preview: true, notas: 'Mais ousada: fundo escuro, tipografia grande e marcante, linha do tempo de serviços. Transmite energia e crescimento.' },
+        { titulo: 'Clássica', data: '30 jun 2026', status: 'analise', url: 'modelos/erika-lima/landing-2a-padrao.html', preview: true, notas: 'Landing clara e direta, com cards de serviço, depoimentos e perguntas frequentes. Fácil de ler e ótima para converter.' },
+        { titulo: 'Atelier', data: '30 jun 2026', status: 'analise', url: 'modelos/erika-lima/landing-2b-atelier.html', preview: true, notas: 'Formal e centrada, em verde e latão, com ar de marca premium. Discreta e elegante.' },
       ],
     },
-    */
+    /* Para cadastrar mais clientes, copie o bloco acima ou use o painel (admin/ → Entregas & Versões). */
   };
 
   const STATUS_LABEL = { analise: 'Em análise', aprovada: 'Aprovada', arquivada: 'Arquivada' };
