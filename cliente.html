@@ -156,49 +156,18 @@
         ou que permitam iframe).
      ══════════════════════════════════════════════════════════════ */
   const CLIENTS = {
-    'splendore': {
-      nome: 'Condomínio Splendore',
-      projeto: 'Site do condomínio',
-      saudacao: 'Preparei três direções de design para o Splendore, cada uma com uma personalidade própria. Navegue nas três com calma, no desktop e no celular — e me conte qual delas traduz melhor o espírito do condomínio.',
-      versoes: [
-        { titulo: 'Editorial', data: '11 jun 2026', status: 'analise', url: '/splendore/editorial/index.html', preview: true, notas: 'Serifa elegante, paleta verde-floresta com creme e latão. Tom de revista de arquitetura — sofisticado e atemporal.' },
-        { titulo: 'Cinemático', data: '11 jun 2026', status: 'analise', url: '/splendore/cinematografico/index.html', preview: true, notas: 'Dark luxury: preto absoluto com dourado, hero em tela cheia. Mood de resort cinco estrelas — dramático e imersivo.' },
-        { titulo: 'Arquitetônico', data: '11 jun 2026', status: 'analise', url: '/splendore/arquitetonico/index.html', preview: true, notas: 'Modernista quente: areia, terracota e grafite. Tipografia gráfica, numerais grandes e grid forte — contemporâneo e marcante.' },
-      ],
-    },
-    'demo': {
-      nome: 'Cliente Demonstração',
+    /* Os clientes reais são cadastrados pelo painel (admin/ → Entregas & Versões)
+       e salvos no data/db.json, que tem prioridade sobre este objeto.
+       Modelo de um cliente, caso queira cadastrar manualmente aqui:
+
+    'cafe-aurora': {
+      nome: 'Café Aurora',
       projeto: 'Site institucional',
-      saudacao: 'Preparei estas versões com carinho a partir do nosso briefing. Navegue em cada uma com calma — e me diga qual delas conversa melhor com a sua marca.',
+      saudacao: 'Preparei estas versões a partir do nosso briefing. Navegue com calma e me diga qual conversa melhor com a sua marca.',
       versoes: [
-        {
-          titulo: 'Linho & Sálvia',
-          data: '11 jun 2026',
-          status: 'analise',
-          url: 'index.html',
-          preview: true,
-          notas: 'Direção quente e editorial: tipografia serifada protagonista, tons de linho e verde-sálvia, bastante respiro.',
-        },
-        {
-          titulo: 'Carvalho Escuro',
-          data: '08 jun 2026',
-          status: 'analise',
-          url: 'index.html',
-          preview: true,
-          notas: 'Variação noturna: fundo espresso, detalhes em âmbar de vela. Mais dramática, boa para marcas com presença forte.',
-        },
-        {
-          titulo: 'Primeira exploração',
-          data: '02 jun 2026',
-          status: 'arquivada',
-          url: '#',
-          preview: false,
-          notas: 'Estudo inicial de layout — mantida aqui apenas como registro do caminho que percorremos.',
-        },
+        { titulo: 'Versão 1', data: '01 jul 2026', status: 'analise', url: 'https://link-da-versao.com', preview: true, notas: 'Notas para o cliente.' },
       ],
     },
-    /* copie o bloco acima para cada cliente novo, ex.:
-    'recanto-da-serra': { nome: 'Recanto da Serra', projeto: 'Imobiliária boutique', saudacao: '…', versoes: [ … ] },
     */
   };
 

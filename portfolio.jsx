@@ -18,19 +18,6 @@ const PALETTES = [
 const SERIFS = ['Instrument Serif', 'Cormorant Garamond'];
 
 /* ─────────── small UI bits ─────────── */
-function StatusPill({ accent }) {
-  return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.14em', textTransform: 'uppercase' }}>
-      <span style={{
-        position: 'relative', width: 7, height: 7, borderRadius: '50%', background: accent,
-        boxShadow: `0 0 0 0 ${accent}66`, animation: 'pulse 2.4s ease-out infinite',
-      }}></span>
-      Disponível p/ junho
-      <style>{`@keyframes pulse { 0%{box-shadow:0 0 0 0 ${accent}66} 70%{box-shadow:0 0 0 8px transparent} 100%{box-shadow:0 0 0 0 transparent} }`}</style>
-    </span>
-  );
-}
-
 function Nav({ accent }) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -70,7 +57,6 @@ function Nav({ accent }) {
             {label}
           </a>
         ))}
-        <StatusPill accent={accent} />
       </div>
       <style>{`
         .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -4px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: right; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
@@ -102,7 +88,7 @@ function Hero() {
       {/* top meta row */}
       <div className="reveal" style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.18em', color: 'var(--muted)', textTransform: 'uppercase' }}>
         <span>Portfólio · Edição 2026</span>
-        <span>São Paulo · Brasil ☉ 23.5°C</span>
+        <span>Web Design &amp; Desenvolvimento</span>
       </div>
 
       {/* main headline */}
@@ -165,12 +151,9 @@ function Marquee() {
 }
 
 /* ─────────── Work ─────────── */
-const PROJECTS = [
-  { num: '01', name: 'Recanto da Serra', kind: 'Imobiliária boutique de campo', year: '2025', tags: ['Next.js', 'CMS', 'Tour 360º'], preview: 'vilamaritima' },
-  { num: '02', name: 'Norte Casas',  kind: 'Site de imobiliária', year: '2024', tags: ['Astro', 'Sanity', 'Filtros'],       preview: 'nortecasas' },
-  { num: '03', name: 'Atelier de Sites', kind: 'Coleção de templates premium', year: '2025', tags: ['Loja', 'Stripe', '12 temas'], preview: 'atelier' },
-  { num: '04', name: 'Folha & Forma', kind: 'Site editorial · estúdio criativo', year: '2024', tags: ['Editorial', 'CMS', 'Custom CMS'], preview: 'folhaforma' },
-];
+/* Projetos reais são cadastrados pelo painel (admin/) e salvos no data/db.json.
+   Esta lista é só o fallback caso o banco esteja vazio. */
+const PROJECTS = [];
 
 function Work({ cursor, projects = PROJECTS }) {
   const [hovered, setHovered] = useState(null);
@@ -193,6 +176,12 @@ function Work({ cursor, projects = PROJECTS }) {
         </div>
         <span style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.18em', color: 'var(--muted)' }}>{String(projects.length).padStart(2, '0')} PROJETOS</span>
       </div>
+
+      {projects.length === 0 && (
+        <p className="reveal" style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', fontSize: 'clamp(24px, 3vw, 38px)', color: 'var(--muted)', margin: '20px 0 40px', maxWidth: 640 }}>
+          Novos projetos em breve. <a href="#contact" style={{ color: 'var(--accent)', borderBottom: '1px solid var(--accent)' }}>Vamos conversar</a> sobre o seu.
+        </p>
+      )}
 
       <div onMouseLeave={() => { setHovered(null); cursor.set(false); }}>
         {projects.map((p, i) => (
@@ -362,17 +351,17 @@ function Contact({ cursor }) {
           <div style={{ marginTop: 56, display: 'flex', flexDirection: 'column', gap: 22 }}>
             <div>
               <div style={labelStyle}>Email direto</div>
-              <a href="mailto:ola@lca.studio" onMouseEnter={() => cursor.set(true)} onMouseLeave={() => cursor.set(false)} style={{ fontFamily: 'var(--serif)', fontSize: 28, fontStyle: 'italic', borderBottom: '1px solid var(--accent)', paddingBottom: 4 }}>
-                ola@lca.studio
+              <a href="mailto:leandrocesardeabreu@gmail.com" onMouseEnter={() => cursor.set(true)} onMouseLeave={() => cursor.set(false)} style={{ fontFamily: 'var(--serif)', fontSize: 24, fontStyle: 'italic', borderBottom: '1px solid var(--accent)', paddingBottom: 4, wordBreak: 'break-all' }}>
+                leandrocesardeabreu@gmail.com
               </a>
             </div>
             <div>
-              <div style={labelStyle}>Telefone</div>
-              <span style={{ fontFamily: 'var(--mono)', fontSize: 16 }}>+55 11 9 0000 0000</span>
+              <div style={labelStyle}>Telefone / WhatsApp</div>
+              <a href="https://wa.me/5546999425015" target="_blank" rel="noopener" style={{ fontFamily: 'var(--mono)', fontSize: 16 }}>+55 46 99942 5015</a>
             </div>
             <div>
               <div style={labelStyle}>Atendimento</div>
-              <span style={{ fontSize: 15, color: 'var(--ink-soft)' }}>Remoto · Brasil & exterior · PT/EN</span>
+              <span style={{ fontSize: 15, color: 'var(--ink-soft)' }}>Remoto · PT/EN</span>
             </div>
           </div>
         </div>
@@ -440,11 +429,8 @@ function Contact({ cursor }) {
 /* ─────────── Footer ─────────── */
 function Footer() {
   const socials = [
-    ['Instagram', '@lca.studio'],
-    ['LinkedIn', '/in/leandrocesar'],
-    ['GitHub', '@lca'],
-    ['Behance', '/lca'],
-    ['Dribbble', '/lca'],
+    ['LinkedIn', '/in/leandrocesardeabreu', 'https://www.linkedin.com/in/leandrocesardeabreu'],
+    ['GitHub', '@Leandroigual', 'https://github.com/Leandroigual'],
   ];
   return (
     <footer data-screen-label="footer" style={{ background: 'var(--ink)', color: 'var(--bg)', padding: '80px 32px 32px', position: 'relative', overflow: 'hidden' }}>
@@ -452,8 +438,8 @@ function Footer() {
         <div>
           <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.22em', opacity: .6, marginBottom: 12 }}>SE QUISER ME ACHAR</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            {socials.map(([n, h]) => (
-              <a key={n} href="#" className="foot-link" style={{ display: 'flex', justifyContent: 'space-between', maxWidth: 360, fontFamily: 'var(--serif)', fontSize: 24, paddingBottom: 12, borderBottom: '1px solid #ffffff20', position: 'relative' }}>
+            {socials.map(([n, h, url]) => (
+              <a key={n} href={url} target="_blank" rel="noopener" className="foot-link" style={{ display: 'flex', justifyContent: 'space-between', maxWidth: 360, fontFamily: 'var(--serif)', fontSize: 24, paddingBottom: 12, borderBottom: '1px solid #ffffff20', position: 'relative' }}>
                 <span>{n}</span>
                 <span style={{ fontFamily: 'var(--mono)', fontSize: 13, opacity: .65 }}>{h}</span>
               </a>
@@ -461,14 +447,14 @@ function Footer() {
           </div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.22em', opacity: .6, marginBottom: 12 }}>NEWSLETTER MENSAL</div>
+          <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '.22em', opacity: .6, marginBottom: 12 }}>FALE DIRETO</div>
           <p style={{ fontFamily: 'var(--serif)', fontSize: 28, lineHeight: 1.1, margin: 0, marginBottom: 24, maxWidth: 420, marginLeft: 'auto' }}>
-            <em>Uma carta por mês</em> sobre o que aprendi desenhando sites no último mês.
+            <em>Conte sua ideia</em> — respondo com um plano e um orçamento, sem rodeio.
           </p>
-          <form onSubmit={(e) => e.preventDefault()} style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-            <input placeholder="seu@email.com" style={{ background: 'transparent', border: 0, borderBottom: '1px solid #fff', padding: '10px 4px', color: '#fff', fontFamily: 'var(--sans)', fontSize: 15, width: 280, outline: 'none' }} />
-            <button style={{ fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.18em', borderBottom: '1px solid var(--accent)', paddingBottom: 4, color: 'var(--accent)' }}>ASSINAR →</button>
-          </form>
+          <a href="mailto:leandrocesardeabreu@gmail.com" style={{ display: 'inline-block', fontFamily: 'var(--serif)', fontSize: 22, fontStyle: 'italic', borderBottom: '1px solid var(--accent)', paddingBottom: 4, wordBreak: 'break-all' }}>leandrocesardeabreu@gmail.com</a>
+          <div style={{ marginTop: 16, fontFamily: 'var(--mono)', fontSize: 14, opacity: .8 }}>
+            <a href="https://wa.me/5546999425015" target="_blank" rel="noopener">+55 46 99942 5015</a>
+          </div>
         </div>
       </div>
 
@@ -479,7 +465,7 @@ function Footer() {
 
       <div style={{ marginTop: 40, paddingTop: 24, borderTop: '1px solid #ffffff20', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.16em', opacity: .65 }}>
         <span>© 2026 LEANDRO CÉSAR DE ABREU</span>
-        <span>FEITO À MÃO — SÃO PAULO</span>
+        <span>FEITO À MÃO</span>
         <span>v.24.05</span>
       </div>
 

@@ -1,25 +1,14 @@
 {
-  "salvoEm": "2026-01-01T00:00:00",
-  "projetos": [
-    { "num": "01", "name": "Projeto Exemplo", "kind": "Site institucional", "year": "2025", "tags": ["Next.js", "CMS"], "preview": "exemplo" }
-  ],
+  "salvoEm": "2026-06-29T00:00:00",
+  "projetos": [],
   "servicos": [
-    { "n": "01", "name": "Sites institucionais", "body": "Descrição do serviço.", "from": "a partir de R$ 0,00" }
+    { "n": "01", "name": "Sites institucionais", "body": "Identidade, copy e código em uma peça só. Para quem precisa de presença online com personalidade.", "from": "a partir de R$ 4.800" },
+    { "n": "02", "name": "Sites para imobiliárias", "body": "Catálogo, filtros, integração com CRM e mapa. Pensado para quem precisa converter visitas em propostas.", "from": "a partir de R$ 8.500" },
+    { "n": "03", "name": "Templates premium", "body": "Coleção de temas prontos para personalização. Você publica em dias, sem reinventar a roda.", "from": "a partir de R$ 480" },
+    { "n": "04", "name": "Landing pages", "body": "Páginas únicas, focadas em conversão. Para lançamentos, campanhas e produtos digitais.", "from": "a partir de R$ 2.400" },
+    { "n": "05", "name": "Manutenção & evolução", "body": "Contratos mensais para cuidar do que já existe — pequenas mudanças, performance, segurança.", "from": "a partir de R$ 680/mês" }
   ],
-  "crm": [
-    { "id": "L-000", "nome": "Lead Exemplo", "empresa": "Empresa Exemplo", "email": "contato@exemplo.com", "fone": "+55 00 0 0000 0000", "origem": "Site", "etapa": "novo", "valor": 0, "nota": "Registro de exemplo — substitua pelos seus dados.", "criado": "2026-01-01" }
-  ],
-  "tickets": [
-    { "id": "T-000", "cliente": "Empresa Exemplo", "assunto": "Assunto de exemplo", "prioridade": "media", "status": "aberto", "criado": "2026-01-01", "nota": "Ticket de exemplo." }
-  ],
-  "entregas": {
-    "demo": {
-      "nome": "Cliente Demonstração",
-      "projeto": "Site institucional",
-      "saudacao": "Mensagem de exemplo para o cliente.",
-      "versoes": [
-        { "titulo": "Versão Exemplo", "data": "01 jan 2026", "status": "analise", "url": "index.html", "preview": true, "notas": "Versão de exemplo." }
-      ]
-    }
-  }
+  "crm": [],
+  "tickets": [],
+  "entregas": {}
 }
