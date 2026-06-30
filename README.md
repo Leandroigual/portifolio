@@ -1,4 +1,4 @@
-# Portfólio LCA — Leandro César de Abreu
+# Portfólio LCA — Leandro Cesar de Abreu
 
 Site de portfólio e mini-painel administrativo (CRM, tickets e entregas) para Web Designer & Developer.
 

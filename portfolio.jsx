@@ -116,7 +116,7 @@ function Hero() {
           color: 'var(--ink-soft)',
           textWrap: 'pretty',
         }}>
-          <strong style={{ fontWeight: 500 }}>Leandro César de Abreu</strong> — designer e desenvolvedor web. Projetos sob medida para imobiliárias, marcas e estúdios. Também desenho <em style={{ fontFamily: 'var(--serif)', fontSize: 18 }}>templates premium</em> que qualquer pessoa pode publicar.
+          <strong style={{ fontWeight: 500 }}>Leandro Cesar de Abreu</strong> — designer e desenvolvedor web. Projetos sob medida para imobiliárias, marcas e estúdios. Também desenho <em style={{ fontFamily: 'var(--serif)', fontSize: 18 }}>templates premium</em> que qualquer pessoa pode publicar.
         </p>
         <div style={{ textAlign: 'right', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.18em', color: 'var(--muted)' }}>
           <div>↓ ROLE PARA EXPLORAR</div>
@@ -464,8 +464,7 @@ function Footer() {
       </div>
 
       <div style={{ marginTop: 40, paddingTop: 24, borderTop: '1px solid #ffffff20', display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '.16em', opacity: .65 }}>
-        <span>© 2026 LEANDRO CÉSAR DE ABREU</span>
-        <span>FEITO À MÃO</span>
+        <span>© 2026 LEANDRO CESAR DE ABREU</span>
         <span>v.24.05</span>
       </div>
 
