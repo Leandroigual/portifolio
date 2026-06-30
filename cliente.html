@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>LCA · Apresentação de versões</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f3ecdf;
+      --paper: #ebe2d2;
+      --ink: #3a2f24;
+      --ink-soft: #5c4f3e;
+      --muted: #8a7d68;
+      --line: #3a2f2417;
+      --accent: #7c8a63;
+      --amber: #a9763f;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--accent); color: #fff; }
+
+    /* paper grain */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: .35; mix-blend-mode: multiply;
+      background-image: radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px), radial-gradient(rgba(0,0,0,.025) 1px, transparent 1px);
+      background-size: 3px 3px, 7px 7px; background-position: 0 0, 1px 2px;
+    }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px 80px; position: relative; z-index: 2; }
+
+    /* header */
+    header { padding: 36px 0 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo .mark { width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--bg); display: grid; place-items: center; font-family: var(--serif); font-style: italic; font-size: 14px; }
+    .logo .name { font-family: var(--mono); font-size: 11px; letter-spacing: .22em; }
+    .header-meta { font-family: var(--mono); font-size: 10px; letter-spacing: .18em; color: var(--muted); text-transform: uppercase; }
+
+    /* hero */
+    .hero { padding: 90px 0 56px; border-bottom: 1px solid var(--ink); }
+    .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7vw, 88px); line-height: .96; letter-spacing: -.02em; margin: 0; }
+    h1 em { color: var(--accent); }
+    .hero p { max-width: 520px; font-size: 16px; line-height: 1.55; color: var(--ink-soft); margin: 28px 0 0; text-wrap: pretty; }
+
+    /* versions */
+    .versions { margin-top: 24px; }
+    .version {
+      display: grid; grid-template-columns: 70px 1fr 360px; gap: 36px;
+      padding: 48px 0; border-bottom: 1px solid var(--line); align-items: start;
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+    }
+    .version.in { opacity: 1; transform: none; }
+    .v-num { font-family: var(--mono); font-size: 12px; letter-spacing: .18em; color: var(--muted); padding-top: 10px; }
+    .v-title { font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); line-height: 1.02; letter-spacing: -.01em; margin: 0 0 10px; font-weight: 400; }
+    .v-title em { color: var(--accent); }
+    .v-meta { font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+    .v-notes { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--ink-soft); max-width: 480px; margin: 0 0 26px; }
+    .badge { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; border: 1px solid currentColor; }
+    .badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.analise { color: var(--amber); }
+    .badge.aprovada { color: var(--accent); }
+    .badge.arquivada { color: var(--muted); }
+    .badge.aprovada::before { animation: pulse 2.4s ease-out infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 #7c8a6366; } 70% { box-shadow: 0 0 0 7px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+
+    .v-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      padding: 15px 28px; border-radius: 999px;
+      background: var(--ink); color: var(--bg);
+      font-family: var(--mono); font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      transition: background .3s, transform .3s cubic-bezier(.2,.7,.2,1);
+    }
+    .btn:hover { background: var(--accent); transform: translateY(-2px); }
+    .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+    .btn.ghost:hover { background: var(--ink); color: var(--bg); transform: translateY(-2px); }
+
+    /* preview frame */
+    .v-preview { position: relative; }
+    .frame {
+      border-radius: 10px; overflow: hidden; background: #fff;
+      box-shadow: 0 30px 80px -24px rgba(58,47,36,.38), 0 4px 12px rgba(58,47,36,.12);
+      border: 1px solid #00000010;
+      transition: transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s;
+    }
+    .version:hover .frame { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 44px 90px -24px rgba(58,47,36,.45), 0 6px 16px rgba(58,47,36,.14); }
+    .frame .chrome { height: 24px; background: #ece4d4; border-bottom: 1px solid #00000010; display: flex; align-items: center; gap: 5px; padding: 0 10px; }
+    .frame .chrome i { width: 7px; height: 7px; border-radius: 50%; display: block; }
+    .frame .chrome .u { margin-left: 8px; font-family: var(--mono); font-size: 9px; color: #6b5f4d; background: #fff; padding: 2px 12px; border-radius: 999px; flex: 1; text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .frame .shot { position: relative; aspect-ratio: 16 / 11; overflow: hidden; background: var(--paper); }
+    .frame .shot iframe {
+      width: 1280px; height: 880px; border: 0;
+      transform: scale(.28); transform-origin: 0 0;
+      pointer-events: none;
+    }
+    .frame .shot .ph { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--muted); }
+
+    /* footer */
+    footer { margin-top: 90px; padding-top: 28px; border-top: 1px solid var(--ink); display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    footer a { border-bottom: 1px solid var(--accent); padding-bottom: 3px; color: var(--ink); transition: color .3s; }
+    footer a:hover { color: var(--accent); }
+
+    /* invalid link */
+    .invalid { padding: 140px 0; text-align: center; }
+    .invalid h1 { font-size: clamp(36px, 6vw, 64px); }
+    .invalid p { color: var(--ink-soft); font-size: 16px; }
+
+    @media (max-width: 900px) {
+      .version { grid-template-columns: 1fr; gap: 22px; }
+      .v-num { padding-top: 0; }
+      .v-preview { order: -1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .version { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="logo" href="index.html">
+        <span class="mark">L</span>
+        <span class="name">LCA · STUDIO</span>
+      </a>
+      <span class="header-meta">Apresentação privada · não compartilhe</span>
+    </header>
+
+    <main id="app"></main>
+
+    <footer>
+      <span>© 2026 Leandro César de Abreu — feito à mão</span>
+      <span>Dúvidas ou ajustes? <a href="mailto:leandrocesardeabreu@gmail.com">me escreva</a></span>
+    </footer>
+  </div>
+
+  <script>
+  /* ══════════════════════════════════════════════════════════════
+     COMO USAR
+     1. Adicione seu cliente no objeto CLIENTS abaixo.
+     2. Envie o link:  cliente.html?c=slug-do-cliente
+     3. status: 'analise' | 'aprovada' | 'arquivada'
+     4. url: o link da versão de front (pode ser pasta local,
+        Netlify, Vercel, etc). preview: true tenta mostrar o site
+        dentro do cartão (funciona para páginas no mesmo domínio
+        ou que permitam iframe).
+     ══════════════════════════════════════════════════════════════ */
+  const CLIENTS = {
+    'splendore': {
+      nome: 'Condomínio Splendore',
+      projeto: 'Site do condomínio',
+      saudacao: 'Preparei três direções de design para o Splendore, cada uma com uma personalidade própria. Navegue nas três com calma, no desktop e no celular — e me conte qual delas traduz melhor o espírito do condomínio.',
+      versoes: [
+        { titulo: 'Editorial', data: '11 jun 2026', status: 'analise', url: '/splendore/editorial/index.html', preview: true, notas: 'Serifa elegante, paleta verde-floresta com creme e latão. Tom de revista de arquitetura — sofisticado e atemporal.' },
+        { titulo: 'Cinemático', data: '11 jun 2026', status: 'analise', url: '/splendore/cinematografico/index.html', preview: true, notas: 'Dark luxury: preto absoluto com dourado, hero em tela cheia. Mood de resort cinco estrelas — dramático e imersivo.' },
+        { titulo: 'Arquitetônico', data: '11 jun 2026', status: 'analise', url: '/splendore/arquitetonico/index.html', preview: true, notas: 'Modernista quente: areia, terracota e grafite. Tipografia gráfica, numerais grandes e grid forte — contemporâneo e marcante.' },
+      ],
+    },
+    'demo': {
+      nome: 'Cliente Demonstração',
+      projeto: 'Site institucional',
+      saudacao: 'Preparei estas versões com carinho a partir do nosso briefing. Navegue em cada uma com calma — e me diga qual delas conversa melhor com a sua marca.',
+      versoes: [
+        {
+          titulo: 'Linho & Sálvia',
+          data: '11 jun 2026',
+          status: 'analise',
+          url: 'index.html',
+          preview: true,
+          notas: 'Direção quente e editorial: tipografia serifada protagonista, tons de linho e verde-sálvia, bastante respiro.',
+        },
+        {
+          titulo: 'Carvalho Escuro',
+          data: '08 jun 2026',
+          status: 'analise',
+          url: 'index.html',
+          preview: true,
+          notas: 'Variação noturna: fundo espresso, detalhes em âmbar de vela. Mais dramática, boa para marcas com presença forte.',
+        },
+        {
+          titulo: 'Primeira exploração',
+          data: '02 jun 2026',
+          status: 'arquivada',
+          url: '#',
+          preview: false,
+          notas: 'Estudo inicial de layout — mantida aqui apenas como registro do caminho que percorremos.',
+        },
+      ],
+    },
+    /* copie o bloco acima para cada cliente novo, ex.:
+    'recanto-da-serra': { nome: 'Recanto da Serra', projeto: 'Imobiliária boutique', saudacao: '…', versoes: [ … ] },
+    */
+  };
+
+  const STATUS_LABEL = { analise: 'Em análise', aprovada: 'Aprovada', arquivada: 'Arquivada' };
+  const params = new URLSearchParams(location.search);
+  const app = document.getElementById('app');
+
+  (async () => {
+  // dados editados pelo painel (admin/) têm prioridade sobre o objeto acima
+  let db = null;
+  try { const r = await fetch('data/db.json', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {}
+  try {
+    const local = JSON.parse(localStorage.getItem('lca_db'));
+    if (local && (!db || (local.salvoEm || '') > (db.salvoEm || ''))) db = local;
+  } catch (e) {}
+  const clients = (db && db.entregas) ? db.entregas : CLIENTS;
+  const client = clients[params.get('c')];
+
+  if (!client) {
+    app.innerHTML = `
+      <div class="invalid">
+        <div class="kicker">§ Link privado</div>
+        <h1>Hmm, este link <em>não existe.</em></h1>
+        <p>Confira o endereço que você recebeu — ou me escreva que eu reenvio.</p>
+      </div>`;
+  } else {
+    const roman = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+    app.innerHTML = `
+      <section class="hero">
+        <div class="kicker">Para ${client.nome} · ${client.projeto}</div>
+        <h1>As versões do <em>seu site,</em><br/>lado a lado.</h1>
+        <p>${client.saudacao}</p>
+      </section>
+      <section class="versions">
+        ${client.versoes.map((v, i) => `
+          <article class="version">
+            <span class="v-num">§ ${roman[i] || i + 1}</span>
+            <div>
+              <h2 class="v-title">Versão ${String(i + 1).padStart(2, '0')} — <em>${v.titulo}</em></h2>
+              <div class="v-meta">
+                <span>${v.data}</span>
+                <span class="badge ${v.status}">${STATUS_LABEL[v.status] || v.status}</span>
+              </div>
+              <p class="v-notes">“${v.notas}”</p>
+              <div class="v-actions">
+                <a class="btn" href="${v.url}" target="_blank" rel="noopener">Abrir versão <span>→</span></a>
+                <a class="btn ghost" href="mailto:leandrocesardeabreu@gmail.com?subject=${encodeURIComponent(`Feedback — ${client.nome} · Versão ${i + 1} (${v.titulo})`)}">Enviar feedback</a>
+              </div>
+            </div>
+            <div class="v-preview">
+              <a class="frame" href="${v.url}" target="_blank" rel="noopener" style="display:block">
+                <div class="chrome">
+                  <i style="background:#d99a6c"></i><i style="background:#c7b27a"></i><i style="background:#8a9a6b"></i>
+                  <span class="u">${v.url === '#' ? 'versão arquivada' : v.url}</span>
+                </div>
+                <div class="shot">
+                  ${v.preview && v.url !== '#'
+                    ? `<iframe data-src="${v.url}" loading="lazy" tabindex="-1" title="Prévia — ${v.titulo}"></iframe><span class="ph">carregando prévia…</span>`
+                    : `<span class="ph">prévia indisponível</span>`}
+                </div>
+              </a>
+            </div>
+          </article>`).join('')}
+      </section>`;
+
+    // reveal no scroll + carrega a prévia só quando o cartão aparece (uma de cada vez)
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('in');
+        const f = e.target.querySelector('iframe[data-src]');
+        if (f) {
+          f.addEventListener('load', () => { const ph = f.parentElement.querySelector('.ph'); if (ph) ph.remove(); }, { once: true });
+          f.src = f.dataset.src;
+          f.removeAttribute('data-src');
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.version').forEach(el => io.observe(el));
+
+    // escala da prévia conforme largura do cartão
+    const fit = () => document.querySelectorAll('.frame .shot iframe').forEach(f => {
+      const w = f.parentElement.clientWidth;
+      f.style.transform = `scale(${w / 1280})`;
+      f.style.height = `${(f.parentElement.clientHeight / (w / 1280))}px`;
+    });
+    requestAnimationFrame(fit);
+    window.addEventListener('resize', fit);
+  }
+  })();
+  </script>
+</body>
+</html>

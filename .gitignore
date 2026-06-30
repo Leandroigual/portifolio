@@ -1,0 +1,15 @@
+# Dados reais de clientes / CRM — NÃO versionar
+data/db.json
+data/db.json.bak
+*.bak
+
+# Ferramentas locais
+.claude/
+
+# Arquivos do sistema / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# Pacotes locais
+files.zip

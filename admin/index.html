@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="pt-BR" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>LCA · Painel</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="/falcon-v3.23.0/public/assets/img/favicons/favicon.ico">
+  <script src="/falcon-v3.23.0/public/assets/js/config.js"></script>
+  <script src="/falcon-v3.23.0/public/vendors/simplebar/simplebar.min.js"></script>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700%7cPoppins:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+  <link href="/falcon-v3.23.0/public/vendors/simplebar/simplebar.min.css" rel="stylesheet">
+  <link href="/falcon-v3.23.0/public/assets/css/theme.css" rel="stylesheet">
+  <link href="/falcon-v3.23.0/public/assets/css/user.css" rel="stylesheet">
+  <style>
+    .pane { display: none; }
+    .pane.active { display: block; }
+    .cursor-pointer { cursor: pointer; }
+    .etapa-chip { font-size: .7rem; letter-spacing: .04em; }
+  </style>
+</head>
+<body>
+<main class="main" id="top">
+  <div class="container" data-layout="container">
+
+    <!-- ── sidebar ── -->
+    <nav class="navbar navbar-light navbar-vertical navbar-expand-xl">
+      <div class="d-flex align-items-center">
+        <div class="toggle-icon-wrapper">
+          <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" title="Alternar navegação"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+        </div>
+        <a class="navbar-brand" href="#">
+          <div class="d-flex align-items-center py-3">
+            <span class="rounded-circle bg-dark text-white d-inline-flex align-items-center justify-content-center me-2" style="width:34px;height:34px;font-family:Georgia,serif;font-style:italic">L</span>
+            <span class="font-sans-serif text-primary">LCA · painel</span>
+          </div>
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+        <div class="navbar-vertical-content scrollbar">
+          <ul class="navbar-nav flex-column mb-3" id="menu">
+            <li class="nav-item"><a class="nav-link active" href="#" data-pane="dashboard"><div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-chart-pie"></span></span><span class="nav-link-text ps-1">Dashboard</span></div></a></li>
+            <li class="nav-item"><a class="nav-link" href="#" data-pane="crm"><div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-handshake"></span></span><span class="nav-link-text ps-1">CRM · Leads</span></div></a></li>
+            <li class="nav-item"><a class="nav-link" href="#" data-pane="suporte"><div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-headset"></span></span><span class="nav-link-text ps-1">Suporte</span></div></a></li>
+            <li class="nav-item">
+              <div class="row navbar-vertical-label-wrapper mt-3 mb-2"><div class="col-auto navbar-vertical-label">Conteúdo do site</div><div class="col ps-0"><hr class="mb-0 navbar-vertical-divider"></div></div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#" data-pane="projetos"><div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-layer-group"></span></span><span class="nav-link-text ps-1">Projetos</span></div></a></li>
+            <li class="nav-item"><a class="nav-link" href="#" data-pane="servicos"><div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-tags"></span></span><span class="nav-link-text ps-1">Serviços</span></div></a></li>
+            <li class="nav-item"><a class="nav-link" href="#" data-pane="entregas"><div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-paper-plane"></span></span><span class="nav-link-text ps-1">Entregas & Versões</span></div></a></li>
+            <li class="nav-item">
+              <div class="row navbar-vertical-label-wrapper mt-3 mb-2"><div class="col-auto navbar-vertical-label">Atalhos</div><div class="col ps-0"><hr class="mb-0 navbar-vertical-divider"></div></div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="../index.html" target="_blank"><div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fas fa-globe"></span></span><span class="nav-link-text ps-1">Ver o site ↗</span></div></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ── content ── -->
+    <div class="content">
+      <nav class="navbar navbar-light navbar-glass navbar-top navbar-expand">
+        <button class="btn navbar-toggler-humburger-icon navbar-toggler me-1 me-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalCollapse"><span class="navbar-toggle-icon"><span class="toggle-line"></span></span></button>
+        <span class="navbar-text fw-semibold" id="paneTitle">Dashboard</span>
+        <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
+          <li class="nav-item me-2"><span class="badge badge-subtle-secondary" id="saveState">—</span></li>
+          <li class="nav-item"><button class="btn btn-falcon-primary btn-sm" id="btnSalvar"><span class="fas fa-save me-1"></span>Salvar tudo</button></li>
+        </ul>
+      </nav>
+
+      <!-- ════ DASHBOARD ════ -->
+      <section class="pane active" id="pane-dashboard">
+        <div class="row g-3 mb-3" id="dashCards"></div>
+        <div class="row g-3">
+          <div class="col-lg-7">
+            <div class="card h-100"><div class="card-header bg-body-tertiary"><h6 class="mb-0">Funil do CRM</h6></div>
+              <div class="card-body" id="dashFunil"></div></div>
+          </div>
+          <div class="col-lg-5">
+            <div class="card h-100"><div class="card-header bg-body-tertiary"><h6 class="mb-0">Tickets recentes</h6></div>
+              <div class="card-body py-2" id="dashTickets"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ CRM ════ -->
+      <section class="pane" id="pane-crm">
+        <div class="card mb-3">
+          <div class="card-header bg-body-tertiary d-flex flex-between-center">
+            <h5 class="mb-0">Leads & clientes</h5>
+            <div class="d-flex gap-2">
+              <select class="form-select form-select-sm" id="crmFiltro" style="width:auto">
+                <option value="">Todas as etapas</option>
+                <option value="novo">Novo</option><option value="contato">Em contato</option>
+                <option value="proposta">Proposta</option><option value="fechado">Fechado</option><option value="perdido">Perdido</option>
+              </select>
+              <button class="btn btn-falcon-primary btn-sm" onclick="abrirLead(-1)"><span class="fas fa-plus me-1"></span>Novo lead</button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive scrollbar">
+              <table class="table table-hover table-sm fs-10 mb-0 overflow-hidden">
+                <thead class="bg-200"><tr class="text-900">
+                  <th>Nome</th><th>Empresa</th><th>Contato</th><th>Origem</th><th>Etapa</th><th class="text-end">Valor</th><th class="text-end">Ações</th>
+                </tr></thead>
+                <tbody id="crmTabela"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ SUPORTE ════ -->
+      <section class="pane" id="pane-suporte">
+        <div class="card mb-3">
+          <div class="card-header bg-body-tertiary d-flex flex-between-center">
+            <h5 class="mb-0">Tickets de suporte</h5>
+            <div class="d-flex gap-2">
+              <select class="form-select form-select-sm" id="tkFiltro" style="width:auto">
+                <option value="">Todos</option><option value="aberto">Abertos</option>
+                <option value="andamento">Em andamento</option><option value="resolvido">Resolvidos</option>
+              </select>
+              <button class="btn btn-falcon-primary btn-sm" onclick="abrirTicket(-1)"><span class="fas fa-plus me-1"></span>Novo ticket</button>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive scrollbar">
+              <table class="table table-hover table-sm fs-10 mb-0">
+                <thead class="bg-200"><tr class="text-900">
+                  <th>ID</th><th>Cliente</th><th>Assunto</th><th>Prioridade</th><th>Status</th><th>Criado</th><th class="text-end">Ações</th>
+                </tr></thead>
+                <tbody id="tkTabela"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ PROJETOS ════ -->
+      <section class="pane" id="pane-projetos">
+        <div class="card mb-3">
+          <div class="card-header bg-body-tertiary d-flex flex-between-center">
+            <div><h5 class="mb-0">Projetos do portfólio</h5><p class="fs-10 mb-0 text-600">Aparecem na seção “Trabalhos selecionados” do site.</p></div>
+            <button class="btn btn-falcon-primary btn-sm" onclick="abrirProjeto(-1)"><span class="fas fa-plus me-1"></span>Novo projeto</button>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive scrollbar">
+              <table class="table table-hover table-sm fs-10 mb-0">
+                <thead class="bg-200"><tr class="text-900"><th>Nº</th><th>Nome</th><th>Descrição</th><th>Ano</th><th>Tags</th><th>Preview</th><th class="text-end">Ações</th></tr></thead>
+                <tbody id="pjTabela"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ SERVIÇOS ════ -->
+      <section class="pane" id="pane-servicos">
+        <div class="card mb-3">
+          <div class="card-header bg-body-tertiary d-flex flex-between-center">
+            <div><h5 class="mb-0">Serviços</h5><p class="fs-10 mb-0 text-600">Seção “O que eu faço” do site.</p></div>
+            <button class="btn btn-falcon-primary btn-sm" onclick="abrirServico(-1)"><span class="fas fa-plus me-1"></span>Novo serviço</button>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive scrollbar">
+              <table class="table table-hover table-sm fs-10 mb-0">
+                <thead class="bg-200"><tr class="text-900"><th>Nº</th><th>Nome</th><th>Descrição</th><th>Preço</th><th class="text-end">Ações</th></tr></thead>
+                <tbody id="svTabela"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ ENTREGAS ════ -->
+      <section class="pane" id="pane-entregas">
+        <div class="d-flex flex-between-center mb-3">
+          <div><h5 class="mb-0">Entregas & versões</h5><p class="fs-10 mb-0 text-600">Cada cliente tem um link privado: <code>cliente.html?c=slug</code></p></div>
+          <button class="btn btn-falcon-primary btn-sm" onclick="abrirEntrega('')"><span class="fas fa-plus me-1"></span>Novo cliente</button>
+        </div>
+        <div class="row g-3" id="enLista"></div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<!-- ── Modal genérico ── -->
+<div class="modal fade" id="modal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header"><h6 class="modal-title" id="modalTitle"></h6><button class="btn-close" data-bs-dismiss="modal"></button></div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary btn-sm" id="modalOk">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast ── -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:2000">
+  <div class="toast align-items-center" id="toast" role="alert">
+    <div class="d-flex"><div class="toast-body" id="toastBody"></div>
+    <button class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button></div>
+  </div>
+</div>
+
+<script src="/falcon-v3.23.0/public/vendors/popper/popper.min.js"></script>
+<script src="/falcon-v3.23.0/public/vendors/bootstrap/bootstrap.min.js"></script>
+<script src="/falcon-v3.23.0/public/vendors/anchorjs/anchor.min.js"></script>
+<script src="/falcon-v3.23.0/public/vendors/is/is.min.js"></script>
+<script src="/falcon-v3.23.0/public/vendors/fontawesome/all.min.js"></script>
+<script src="/falcon-v3.23.0/public/vendors/lodash/lodash.min.js"></script>
+<script src="/falcon-v3.23.0/public/vendors/list.js/list.min.js"></script>
+<script src="/falcon-v3.23.0/public/assets/js/theme.js"></script>
+
+<script>
+/* ═══════════════ estado ═══════════════ */
+let DB = null;
+let apiOk = false;
+
+const ETAPAS = { novo: ['Novo', 'info'], contato: ['Em contato', 'primary'], proposta: ['Proposta', 'warning'], fechado: ['Fechado', 'success'], perdido: ['Perdido', 'secondary'] };
+const PRIOS  = { baixa: ['Baixa', 'secondary'], media: ['Média', 'info'], alta: ['Alta', 'danger'] };
+const TSTATUS = { aberto: ['Aberto', 'danger'], andamento: ['Em andamento', 'warning'], resolvido: ['Resolvido', 'success'] };
+const VSTATUS = { analise: 'Em análise', aprovada: 'Aprovada', arquivada: 'Arquivada' };
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const brl = v => v ? Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }) : '—';
+const toast = (msg) => { document.getElementById('toastBody').textContent = msg; bootstrap.Toast.getOrCreateInstance(document.getElementById('toast')).show(); };
+
+/* ═══════════════ carga / persistência ═══════════════ */
+async function loadDB() {
+  let fromApi = null, fromLocal = null;
+  try { const r = await fetch('api.php', { cache: 'no-store' }); if (r.ok) { fromApi = await r.json(); apiOk = true; } } catch (e) {}
+  if (!fromApi) { try { const r = await fetch('../data/db.json', { cache: 'no-store' }); if (r.ok) fromApi = await r.json(); } catch (e) {} }
+  try { fromLocal = JSON.parse(localStorage.getItem('lca_db')); } catch (e) {}
+  if (fromApi && fromLocal) DB = (fromLocal.salvoEm || '') > (fromApi.salvoEm || '') ? fromLocal : fromApi;
+  else DB = fromApi || fromLocal;
+  if (!DB) { toast('Não consegui carregar o banco de dados.'); DB = { projetos: [], servicos: [], crm: [], tickets: [], entregas: {} }; }
+  document.getElementById('saveState').textContent = apiOk ? 'API · PHP ok' : 'modo local';
+  renderAll();
+}
+
+async function saveDB() {
+  DB.salvoEm = new Date().toISOString().slice(0, 19);
+  localStorage.setItem('lca_db', JSON.stringify(DB));
+  if (apiOk) {
+    let key = sessionStorage.getItem('lca_key');
+    if (!key) { key = prompt('Chave do admin (padrão: lca2026):') || ''; sessionStorage.setItem('lca_key', key); }
+    try {
+      const r = await fetch('api.php?key=' + encodeURIComponent(key), { method: 'POST', body: JSON.stringify(DB) });
+      if (r.status === 401) { sessionStorage.removeItem('lca_key'); toast('Chave inválida — salvo só localmente.'); return; }
+      if (!r.ok) throw new Error();
+      toast('Salvo no servidor ✓');
+      return;
+    } catch (e) { toast('Servidor indisponível — salvo localmente.'); return; }
+  }
+  toast('Salvo localmente (sem PHP) ✓');
+}
+document.getElementById('btnSalvar').onclick = saveDB;
+
+/* ═══════════════ navegação ═══════════════ */
+document.querySelectorAll('#menu [data-pane]').forEach(a => a.onclick = (e) => {
+  e.preventDefault();
+  document.querySelectorAll('#menu .nav-link').forEach(n => n.classList.remove('active'));
+  a.classList.add('active');
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('pane-' + a.dataset.pane).classList.add('active');
+  document.getElementById('paneTitle').textContent = a.querySelector('.nav-link-text').textContent;
+});
+
+/* ═══════════════ modal helper ═══════════════ */
+const modalEl = document.getElementById('modal');
+const modal = () => bootstrap.Modal.getOrCreateInstance(modalEl);
+function abrirModal(titulo, corpoHTML, onOk) {
+  document.getElementById('modalTitle').textContent = titulo;
+  document.getElementById('modalBody').innerHTML = corpoHTML;
+  document.getElementById('modalOk').onclick = () => { if (onOk() !== false) { modal().hide(); renderAll(); saveDB(); } };
+  modal().show();
+}
+const campo = (id, label, valor = '', tipo = 'text', extra = '') =>
+  `<div class="mb-3"><label class="form-label fs-10 text-600 text-uppercase">${label}</label>
+   <input class="form-control form-control-sm" id="${id}" type="${tipo}" value="${esc(valor)}" ${extra}></div>`;
+const area = (id, label, valor = '') =>
+  `<div class="mb-3"><label class="form-label fs-10 text-600 text-uppercase">${label}</label>
+   <textarea class="form-control form-control-sm" id="${id}" rows="3">${esc(valor)}</textarea></div>`;
+const sel = (id, label, valor, opts) =>
+  `<div class="mb-3"><label class="form-label fs-10 text-600 text-uppercase">${label}</label>
+   <select class="form-select form-select-sm" id="${id}">${Object.entries(opts).map(([v, l]) =>
+     `<option value="${v}" ${v === valor ? 'selected' : ''}>${Array.isArray(l) ? l[0] : l}</option>`).join('')}</select></div>`;
+const val = id => document.getElementById(id).value.trim();
+
+/* ═══════════════ render ═══════════════ */
+function renderAll() { renderDash(); renderCRM(); renderTickets(); renderProjetos(); renderServicos(); renderEntregas(); }
+
+function renderDash() {
+  const abertos = DB.tickets.filter(t => t.status !== 'resolvido').length;
+  const ativos = DB.crm.filter(l => !['fechado', 'perdido'].includes(l.etapa)).length;
+  const pipeline = DB.crm.filter(l => ['contato', 'proposta'].includes(l.etapa)).reduce((s, l) => s + (+l.valor || 0), 0);
+  const entregasAnalise = Object.values(DB.entregas).flatMap(c => c.versoes).filter(v => v.status === 'analise').length;
+  const cards = [
+    ['Leads ativos', ativos, 'fa-handshake', 'primary'],
+    ['Pipeline (proposta + contato)', brl(pipeline), 'fa-coins', 'success'],
+    ['Tickets em aberto', abertos, 'fa-headset', 'danger'],
+    ['Versões aguardando cliente', entregasAnalise, 'fa-paper-plane', 'info'],
+  ];
+  document.getElementById('dashCards').innerHTML = cards.map(([t, v, ic, cor]) => `
+    <div class="col-sm-6 col-xxl-3">
+      <div class="card overflow-hidden"><div class="card-body position-relative">
+        <h6 class="text-700">${t}</h6>
+        <div class="display-6 fs-5 fw-normal text-${cor}">${v}</div>
+        <span class="fas ${ic} fa-2x position-absolute end-0 bottom-0 me-3 mb-3 text-${cor} opacity-25"></span>
+      </div></div>
+    </div>`).join('');
+
+  const total = DB.crm.length || 1;
+  document.getElementById('dashFunil').innerHTML = Object.entries(ETAPAS).map(([k, [label, cor]]) => {
+    const n = DB.crm.filter(l => l.etapa === k).length;
+    return `<div class="d-flex align-items-center mb-2">
+      <span class="fs-10 text-700" style="width:110px">${label}</span>
+      <div class="progress flex-grow-1" style="height:10px"><div class="progress-bar bg-${cor}" style="width:${(n / total) * 100}%"></div></div>
+      <span class="fs-10 ms-2 text-600">${n}</span></div>`;
+  }).join('');
+
+  document.getElementById('dashTickets').innerHTML = DB.tickets.slice(0, 5).map(t => `
+    <div class="d-flex flex-between-center border-bottom py-2">
+      <div><div class="fs-10 fw-semibold">${esc(t.assunto)}</div><div class="fs-11 text-600">${esc(t.cliente)} · ${esc(t.criado)}</div></div>
+      <span class="badge badge-subtle-${TSTATUS[t.status][1]}">${TSTATUS[t.status][0]}</span>
+    </div>`).join('') || '<p class="fs-10 text-600 mb-0">Nenhum ticket.</p>';
+}
+
+/* ── CRM ── */
+function renderCRM() {
+  const filtro = document.getElementById('crmFiltro').value;
+  const rows = DB.crm.filter(l => !filtro || l.etapa === filtro);
+  document.getElementById('crmTabela').innerHTML = rows.map(l => {
+    const i = DB.crm.indexOf(l);
+    const [label, cor] = ETAPAS[l.etapa] || ['?', 'secondary'];
+    return `<tr>
+      <td class="fw-semibold cursor-pointer" onclick="abrirLead(${i})">${esc(l.nome)}<div class="fs-11 text-600 fw-normal">${esc(l.nota).slice(0, 60)}</div></td>
+      <td>${esc(l.empresa)}</td>
+      <td class="fs-11">${esc(l.email)}<br>${esc(l.fone)}</td>
+      <td>${esc(l.origem)}</td>
+      <td><span class="badge badge-subtle-${cor} etapa-chip">${label}</span></td>
+      <td class="text-end">${brl(l.valor)}</td>
+      <td class="text-end text-nowrap">
+        <button class="btn btn-link btn-sm p-1" title="Editar" onclick="abrirLead(${i})"><span class="fas fa-pen"></span></button>
+        <button class="btn btn-link btn-sm p-1 text-danger" title="Excluir" onclick="excluir('crm',${i})"><span class="fas fa-trash"></span></button>
+      </td></tr>`;
+  }).join('') || '<tr><td colspan="7" class="text-center text-600 py-4">Nenhum lead nesta etapa.</td></tr>';
+}
+document.getElementById('crmFiltro').onchange = renderCRM;
+
+function abrirLead(i) {
+  const l = i >= 0 ? DB.crm[i] : { id: 'L-' + String(DB.crm.length + 1).padStart(3, '0'), etapa: 'novo', criado: new Date().toISOString().slice(0, 10) };
+  abrirModal(i >= 0 ? 'Editar lead' : 'Novo lead', `
+    <div class="row"><div class="col-md-6">${campo('f_nome', 'Nome', l.nome)}</div><div class="col-md-6">${campo('f_empresa', 'Empresa', l.empresa)}</div></div>
+    <div class="row"><div class="col-md-6">${campo('f_email', 'E-mail', l.email, 'email')}</div><div class="col-md-6">${campo('f_fone', 'Telefone', l.fone)}</div></div>
+    <div class="row"><div class="col-md-4">${campo('f_origem', 'Origem', l.origem)}</div>
+      <div class="col-md-4">${sel('f_etapa', 'Etapa', l.etapa, ETAPAS)}</div>
+      <div class="col-md-4">${campo('f_valor', 'Valor (R$)', l.valor || '', 'number')}</div></div>
+    ${area('f_nota', 'Notas', l.nota)}`,
+    () => {
+      if (!val('f_nome')) { toast('Nome é obrigatório.'); return false; }
+      Object.assign(l, { nome: val('f_nome'), empresa: val('f_empresa'), email: val('f_email'), fone: val('f_fone'), origem: val('f_origem'), etapa: val('f_etapa'), valor: +val('f_valor') || 0, nota: val('f_nota') });
+      if (i < 0) DB.crm.unshift(l);
+    });
+}
+
+/* ── Suporte ── */
+function renderTickets() {
+  const filtro = document.getElementById('tkFiltro').value;
+  const rows = DB.tickets.filter(t => !filtro || t.status === filtro);
+  document.getElementById('tkTabela').innerHTML = rows.map(t => {
+    const i = DB.tickets.indexOf(t);
+    return `<tr>
+      <td class="fs-11 text-600">${esc(t.id)}</td>
+      <td>${esc(t.cliente)}</td>
+      <td class="fw-semibold cursor-pointer" onclick="abrirTicket(${i})">${esc(t.assunto)}<div class="fs-11 text-600 fw-normal">${esc(t.nota).slice(0, 70)}</div></td>
+      <td><span class="badge badge-subtle-${PRIOS[t.prioridade][1]}">${PRIOS[t.prioridade][0]}</span></td>
+      <td><span class="badge badge-subtle-${TSTATUS[t.status][1]}">${TSTATUS[t.status][0]}</span></td>
+      <td class="fs-11">${esc(t.criado)}</td>
+      <td class="text-end text-nowrap">
+        ${t.status !== 'resolvido' ? `<button class="btn btn-link btn-sm p-1 text-success" title="Resolver" onclick="DB.tickets[${i}].status='resolvido';renderAll();saveDB()"><span class="fas fa-check"></span></button>` : ''}
+        <button class="btn btn-link btn-sm p-1" title="Editar" onclick="abrirTicket(${i})"><span class="fas fa-pen"></span></button>
+        <button class="btn btn-link btn-sm p-1 text-danger" title="Excluir" onclick="excluir('tickets',${i})"><span class="fas fa-trash"></span></button>
+      </td></tr>`;
+  }).join('') || '<tr><td colspan="7" class="text-center text-600 py-4">Nenhum ticket.</td></tr>';
+}
+document.getElementById('tkFiltro').onchange = renderTickets;
+
+function abrirTicket(i) {
+  const t = i >= 0 ? DB.tickets[i] : { id: 'T-' + (100 + DB.tickets.length + 1), prioridade: 'media', status: 'aberto', criado: new Date().toISOString().slice(0, 10) };
+  abrirModal(i >= 0 ? 'Editar ticket' : 'Novo ticket', `
+    <div class="row"><div class="col-md-6">${campo('f_cliente', 'Cliente', t.cliente)}</div><div class="col-md-6">${campo('f_assunto', 'Assunto', t.assunto)}</div></div>
+    <div class="row"><div class="col-md-6">${sel('f_prio', 'Prioridade', t.prioridade, PRIOS)}</div><div class="col-md-6">${sel('f_status', 'Status', t.status, TSTATUS)}</div></div>
+    ${area('f_nota', 'Notas', t.nota)}`,
+    () => {
+      if (!val('f_assunto')) { toast('Assunto é obrigatório.'); return false; }
+      Object.assign(t, { cliente: val('f_cliente'), assunto: val('f_assunto'), prioridade: val('f_prio'), status: val('f_status'), nota: val('f_nota') });
+      if (i < 0) DB.tickets.unshift(t);
+    });
+}
+
+/* ── Projetos ── */
+function renderProjetos() {
+  document.getElementById('pjTabela').innerHTML = DB.projetos.map((p, i) => `<tr>
+    <td class="fs-11 text-600">${esc(p.num)}</td>
+    <td class="fw-semibold cursor-pointer" onclick="abrirProjeto(${i})">${esc(p.name)}</td>
+    <td>${esc(p.kind)}</td><td>${esc(p.year)}</td>
+    <td class="fs-11">${(p.tags || []).map(t => `<span class="badge badge-subtle-secondary me-1">${esc(t)}</span>`).join('')}</td>
+    <td class="fs-11 text-600">${esc(p.preview)}</td>
+    <td class="text-end text-nowrap">
+      <button class="btn btn-link btn-sm p-1" onclick="moverProjeto(${i},-1)" title="Subir"><span class="fas fa-arrow-up"></span></button>
+      <button class="btn btn-link btn-sm p-1" onclick="moverProjeto(${i},1)" title="Descer"><span class="fas fa-arrow-down"></span></button>
+      <button class="btn btn-link btn-sm p-1" onclick="abrirProjeto(${i})" title="Editar"><span class="fas fa-pen"></span></button>
+      <button class="btn btn-link btn-sm p-1 text-danger" onclick="excluir('projetos',${i})" title="Excluir"><span class="fas fa-trash"></span></button>
+    </td></tr>`).join('');
+}
+function moverProjeto(i, d) {
+  const j = i + d; if (j < 0 || j >= DB.projetos.length) return;
+  [DB.projetos[i], DB.projetos[j]] = [DB.projetos[j], DB.projetos[i]];
+  DB.projetos.forEach((p, k) => p.num = String(k + 1).padStart(2, '0'));
+  renderAll(); saveDB();
+}
+function abrirProjeto(i) {
+  const p = i >= 0 ? DB.projetos[i] : { num: String(DB.projetos.length + 1).padStart(2, '0'), tags: [], preview: 'vilamaritima' };
+  abrirModal(i >= 0 ? 'Editar projeto' : 'Novo projeto', `
+    <div class="row"><div class="col-md-8">${campo('f_name', 'Nome', p.name)}</div><div class="col-md-4">${campo('f_year', 'Ano', p.year)}</div></div>
+    ${campo('f_kind', 'Descrição curta', p.kind)}
+    ${campo('f_tags', 'Tags (separadas por vírgula)', (p.tags || []).join(', '))}
+    ${sel('f_preview', 'Mockup de preview (hover no site)', p.preview, { vilamaritima: 'Fazenda boutique', nortecasas: 'Cottage / imobiliária', atelier: 'Loja de templates', folhaforma: 'Estúdio editorial' })}`,
+    () => {
+      if (!val('f_name')) { toast('Nome é obrigatório.'); return false; }
+      Object.assign(p, { name: val('f_name'), year: val('f_year'), kind: val('f_kind'), tags: val('f_tags').split(',').map(s => s.trim()).filter(Boolean), preview: val('f_preview') });
+      if (i < 0) DB.projetos.push(p);
+    });
+}
+
+/* ── Serviços ── */
+function renderServicos() {
+  document.getElementById('svTabela').innerHTML = DB.servicos.map((s, i) => `<tr>
+    <td class="fs-11 text-600">${esc(s.n)}</td>
+    <td class="fw-semibold cursor-pointer" onclick="abrirServico(${i})">${esc(s.name)}</td>
+    <td class="fs-11">${esc(s.body)}</td><td class="fs-11 text-nowrap">${esc(s.from)}</td>
+    <td class="text-end text-nowrap">
+      <button class="btn btn-link btn-sm p-1" onclick="abrirServico(${i})" title="Editar"><span class="fas fa-pen"></span></button>
+      <button class="btn btn-link btn-sm p-1 text-danger" onclick="excluir('servicos',${i})" title="Excluir"><span class="fas fa-trash"></span></button>
+    </td></tr>`).join('');
+}
+function abrirServico(i) {
+  const s = i >= 0 ? DB.servicos[i] : { n: String(DB.servicos.length + 1).padStart(2, '0') };
+  abrirModal(i >= 0 ? 'Editar serviço' : 'Novo serviço', `
+    ${campo('f_name', 'Nome', s.name)}
+    ${area('f_body', 'Descrição', s.body)}
+    ${campo('f_from', 'Preço (texto livre)', s.from)}`,
+    () => {
+      if (!val('f_name')) { toast('Nome é obrigatório.'); return false; }
+      Object.assign(s, { name: val('f_name'), body: val('f_body'), from: val('f_from') });
+      if (i < 0) DB.servicos.push(s);
+    });
+}
+
+/* ── Entregas & versões ── */
+function renderEntregas() {
+  const slugs = Object.keys(DB.entregas);
+  document.getElementById('enLista').innerHTML = slugs.map(slug => {
+    const c = DB.entregas[slug];
+    const link = new URL('../cliente.html?c=' + slug, location.href).href;
+    return `<div class="col-lg-6">
+      <div class="card h-100">
+        <div class="card-header bg-body-tertiary d-flex flex-between-center">
+          <div><h6 class="mb-0">${esc(c.nome)}</h6><span class="fs-11 text-600">${esc(c.projeto)} · <code>?c=${esc(slug)}</code></span></div>
+          <div class="text-nowrap">
+            <button class="btn btn-falcon-default btn-sm" title="Copiar link" onclick="navigator.clipboard.writeText('${link}').then(()=>toast('Link copiado ✓'))"><span class="fas fa-link"></span></button>
+            <a class="btn btn-falcon-default btn-sm" title="Abrir" href="${link}" target="_blank"><span class="fas fa-external-link-alt"></span></a>
+            <button class="btn btn-falcon-default btn-sm" title="Editar cliente" onclick="abrirEntrega('${esc(slug)}')"><span class="fas fa-pen"></span></button>
+            <button class="btn btn-falcon-danger btn-sm" title="Excluir cliente" onclick="excluirEntrega('${esc(slug)}')"><span class="fas fa-trash"></span></button>
+          </div>
+        </div>
+        <div class="card-body py-2">
+          ${c.versoes.map((v, vi) => `
+            <div class="d-flex flex-between-center border-bottom py-2">
+              <div class="cursor-pointer" onclick="abrirVersao('${esc(slug)}',${vi})">
+                <div class="fs-10 fw-semibold">v${String(vi + 1).padStart(2, '0')} — ${esc(v.titulo)}</div>
+                <div class="fs-11 text-600">${esc(v.data)} · ${esc(v.url)}</div>
+              </div>
+              <div class="text-nowrap">
+                <span class="badge badge-subtle-${v.status === 'aprovada' ? 'success' : v.status === 'arquivada' ? 'secondary' : 'warning'} me-1">${VSTATUS[v.status] || v.status}</span>
+                <button class="btn btn-link btn-sm p-1" onclick="abrirVersao('${esc(slug)}',${vi})"><span class="fas fa-pen"></span></button>
+                <button class="btn btn-link btn-sm p-1 text-danger" onclick="DB.entregas['${esc(slug)}'].versoes.splice(${vi},1);renderAll();saveDB()"><span class="fas fa-trash"></span></button>
+              </div>
+            </div>`).join('')}
+          <button class="btn btn-link btn-sm ps-0 mt-1" onclick="abrirVersao('${esc(slug)}',-1)"><span class="fas fa-plus me-1"></span>Adicionar versão</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('') || '<div class="col-12 text-center text-600 py-5">Nenhum cliente cadastrado.</div>';
+}
+function abrirEntrega(slug) {
+  const c = slug ? DB.entregas[slug] : { nome: '', projeto: '', saudacao: '', versoes: [] };
+  abrirModal(slug ? 'Editar cliente' : 'Novo cliente', `
+    ${campo('f_slug', 'Slug do link (sem espaços, ex: cafe-aurora)', slug)}
+    <div class="row"><div class="col-md-6">${campo('f_nome', 'Nome do cliente', c.nome)}</div><div class="col-md-6">${campo('f_projeto', 'Projeto', c.projeto)}</div></div>
+    ${area('f_saudacao', 'Saudação (texto de abertura da página)', c.saudacao)}`,
+    () => {
+      const novoSlug = val('f_slug').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+      if (!novoSlug || !val('f_nome')) { toast('Slug e nome são obrigatórios.'); return false; }
+      if (novoSlug !== slug && DB.entregas[novoSlug]) { toast('Esse slug já existe.'); return false; }
+      Object.assign(c, { nome: val('f_nome'), projeto: val('f_projeto'), saudacao: val('f_saudacao') });
+      if (slug && novoSlug !== slug) delete DB.entregas[slug];
+      DB.entregas[novoSlug] = c;
+    });
+}
+function excluirEntrega(slug) {
+  if (confirm(`Excluir o cliente "${DB.entregas[slug].nome}" e todas as versões?`)) { delete DB.entregas[slug]; renderAll(); saveDB(); }
+}
+function abrirVersao(slug, vi) {
+  const v = vi >= 0 ? DB.entregas[slug].versoes[vi] : { titulo: '', data: new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', ''), status: 'analise', url: '', preview: true, notas: '' };
+  abrirModal((vi >= 0 ? 'Editar' : 'Nova') + ' versão — ' + DB.entregas[slug].nome, `
+    <div class="row"><div class="col-md-8">${campo('f_titulo', 'Título da versão', v.titulo)}</div><div class="col-md-4">${campo('f_data', 'Data (texto)', v.data)}</div></div>
+    ${campo('f_url', 'URL da versão de front', v.url)}
+    <div class="row"><div class="col-md-6">${sel('f_status', 'Status', v.status, VSTATUS)}</div>
+      <div class="col-md-6">${sel('f_preview', 'Prévia ao vivo (iframe)', String(v.preview), { 'true': 'Sim', 'false': 'Não' })}</div></div>
+    ${area('f_notas', 'Nota para o cliente', v.notas)}`,
+    () => {
+      if (!val('f_titulo')) { toast('Título é obrigatório.'); return false; }
+      Object.assign(v, { titulo: val('f_titulo'), data: val('f_data'), url: val('f_url'), status: val('f_status'), preview: val('f_preview') === 'true', notas: val('f_notas') });
+      if (vi < 0) DB.entregas[slug].versoes.push(v);
+    });
+}
+
+/* ── excluir genérico ── */
+function excluir(col, i) {
+  if (confirm('Excluir este registro?')) { DB[col].splice(i, 1); renderAll(); saveDB(); }
+}
+
+loadDB();
+</script>
+</body>
+</html>

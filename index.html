@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LCA — Leandro César de Abreu · Web Designer & Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f3ecdf;
+      --paper: #ebe2d2;
+      --ink: #3a2f24;
+      --ink-soft: #5c4f3e;
+      --muted: #8a7d68;
+      --line: #3a2f2417;
+      --accent: #7c8a63;
+      --accent-ink: #fff;
+
+      --serif: 'Cormorant Garamond', 'Instrument Serif', Georgia, serif;
+      --sans: 'DM Sans', 'Manrope', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    body { overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+    ::selection { background: var(--accent); color: var(--accent-ink); }
+
+    /* subtle paper grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: .35;
+      mix-blend-mode: multiply;
+      background-image:
+        radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px),
+        radial-gradient(rgba(0,0,0,.025) 1px, transparent 1px);
+      background-size: 3px 3px, 7px 7px;
+      background-position: 0 0, 1px 2px;
+    }
+
+    /* custom cursor */
+    .cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--ink);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width .25s ease, height .25s ease, background .25s ease, opacity .2s;
+      mix-blend-mode: difference;
+      filter: invert(1);
+    }
+    .cursor.hover {
+      width: 56px; height: 56px;
+      background: var(--accent);
+      mix-blend-mode: normal;
+      filter: none;
+    }
+    @media (hover: none) { .cursor { display: none; } }
+
+    /* scroll progress */
+    .progress {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: 2px;
+      z-index: 100;
+      background: transparent;
+    }
+    .progress > span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      transform-origin: left;
+    }
+
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal-line { overflow: hidden; }
+    .reveal-line > span { display: block; transform: translateY(110%); transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+    .reveal-line.in > span { transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-line > span { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* ── responsividade mobile (sobrepõe os estilos inline do JSX) ── */
+    @media (max-width: 860px) {
+      nav[data-screen-label="nav"] { padding-left: 20px !important; padding-right: 20px !important; }
+      nav[data-screen-label="nav"] > div { gap: 16px !important; }
+      nav[data-screen-label="nav"] > div > span { display: none !important; } /* esconde a pílula de status */
+      nav[data-screen-label="nav"] > a > span:last-child { display: none !important; } /* só a bolinha L */
+      nav[data-screen-label="nav"] > div { gap: 14px !important; }
+      /* cabeçalhos de seção: esconde o rótulo meta da direita */
+      section[data-screen-label="work"] > div.reveal > span,
+      section[data-screen-label="services"] > div.reveal > span,
+      section[data-screen-label="contact"] > div.reveal > span { display: none !important; }
+      /* linhas de serviços: 3 colunas enxutas, sem o preço inline */
+      section[data-screen-label="services"] button > div { grid-template-columns: 32px 1fr 28px !important; gap: 12px !important; }
+      section[data-screen-label="services"] button > div:first-child > span:nth-child(3) { display: none !important; }
+      header[data-screen-label="hero"],
+      section[data-screen-label="work"],
+      section[data-screen-label="services"],
+      section[data-screen-label="contact"] { padding-left: 20px !important; padding-right: 20px !important; }
+      header[data-screen-label="hero"] > div:last-child { grid-template-columns: 1fr !important; }
+      header[data-screen-label="hero"] > div:last-child > div { text-align: left !important; }
+      .project-row { grid-template-columns: 1fr !important; gap: 8px !important; }
+      .project-row > span:nth-child(3),
+      .project-row > span:nth-child(4) { text-align: left !important; }
+      section[data-screen-label="contact"] > div:last-of-type { grid-template-columns: 1fr !important; gap: 48px !important; }
+      footer[data-screen-label="footer"] > div:first-of-type { grid-template-columns: 1fr !important; }
+      footer[data-screen-label="footer"] > div:first-of-type > div:last-child { text-align: left !important; }
+      footer[data-screen-label="footer"] form { justify-content: flex-start !important; }
+      footer[data-screen-label="footer"] p { margin-left: 0 !important; }
+      footer[data-screen-label="footer"] > div:last-of-type { flex-direction: column; gap: 6px; }
+    }
+    /* sem preview flutuante em telas de toque */
+    @media (hover: none) {
+      section[data-screen-label="work"] > div[style*="fixed"] { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="previews.jsx"></script>
+  <script type="text/babel" src="portfolio.jsx"></script>
+</body>
+</html>

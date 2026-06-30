@@ -1,0 +1,25 @@
+{
+  "salvoEm": "2026-01-01T00:00:00",
+  "projetos": [
+    { "num": "01", "name": "Projeto Exemplo", "kind": "Site institucional", "year": "2025", "tags": ["Next.js", "CMS"], "preview": "exemplo" }
+  ],
+  "servicos": [
+    { "n": "01", "name": "Sites institucionais", "body": "Descrição do serviço.", "from": "a partir de R$ 0,00" }
+  ],
+  "crm": [
+    { "id": "L-000", "nome": "Lead Exemplo", "empresa": "Empresa Exemplo", "email": "contato@exemplo.com", "fone": "+55 00 0 0000 0000", "origem": "Site", "etapa": "novo", "valor": 0, "nota": "Registro de exemplo — substitua pelos seus dados.", "criado": "2026-01-01" }
+  ],
+  "tickets": [
+    { "id": "T-000", "cliente": "Empresa Exemplo", "assunto": "Assunto de exemplo", "prioridade": "media", "status": "aberto", "criado": "2026-01-01", "nota": "Ticket de exemplo." }
+  ],
+  "entregas": {
+    "demo": {
+      "nome": "Cliente Demonstração",
+      "projeto": "Site institucional",
+      "saudacao": "Mensagem de exemplo para o cliente.",
+      "versoes": [
+        { "titulo": "Versão Exemplo", "data": "01 jan 2026", "status": "analise", "url": "index.html", "preview": true, "notas": "Versão de exemplo." }
+      ]
+    }
+  }
+}
