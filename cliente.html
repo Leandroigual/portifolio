@@ -175,14 +175,12 @@
   const app = document.getElementById('app');
 
   (async () => {
-  // dados editados pelo painel (admin/) têm prioridade sobre o objeto acima
+  // dados vêm da mesma fonte do painel: admin/api.php (MySQL ou db.json).
+  // Fallbacks: o arquivo data/db.json e, por fim, o objeto CLIENTS acima.
   let db = null;
-  try { const r = await fetch('data/db.json', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {}
-  try {
-    const local = JSON.parse(localStorage.getItem('lca_db'));
-    if (local && (!db || (local.salvoEm || '') > (db.salvoEm || ''))) db = local;
-  } catch (e) {}
-  const clients = (db && db.entregas) ? db.entregas : CLIENTS;
+  try { const r = await fetch('admin/api.php', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {}
+  if (!db) { try { const r = await fetch('data/db.json', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {} }
+  const clients = (db && db.entregas && Object.keys(db.entregas).length) ? db.entregas : CLIENTS;
   const client = clients[params.get('c')];
 
   if (!client) {

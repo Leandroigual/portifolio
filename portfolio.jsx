@@ -538,7 +538,8 @@ function App() {
   useEffect(() => {
     (async () => {
       let db = null;
-      try { const r = await fetch('data/db.json', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {}
+      try { const r = await fetch('admin/api.php', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {}
+      if (!db) { try { const r = await fetch('data/db.json', { cache: 'no-store' }); if (r.ok) db = await r.json(); } catch (e) {} }
       try {
         const local = JSON.parse(localStorage.getItem('lca_db'));
         if (local && (!db || (local.salvoEm || '') > (db.salvoEm || ''))) db = local;
