@@ -51,6 +51,13 @@
     h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(44px, 7vw, 88px); line-height: .96; letter-spacing: -.02em; margin: 0; }
     h1 em { color: var(--accent); }
     .hero p { max-width: 520px; font-size: 16px; line-height: 1.55; color: var(--ink-soft); margin: 28px 0 0; text-wrap: pretty; }
+    .proposal-callout {
+      max-width: 620px; margin-top: 28px; padding: 22px 24px;
+      background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    }
+    .proposal-callout h2 { font-family: var(--serif); font-size: 28px; line-height: 1.05; font-weight: 400; margin: 0 0 8px; }
+    .proposal-callout p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+    .proposal-callout .btn { margin-top: 18px; }
 
     /* versions */
     .versions { margin-top: 24px; }
@@ -160,6 +167,7 @@
       nome: 'Érika Lima',
       projeto: 'Landing page · Consultoria Contábil',
       saudacao: 'Érika, preparei quatro direções de design para a sua landing page, cada uma com uma personalidade própria. Navegue em todas com calma — no computador e no celular — e me diga qual combina mais com a sua marca.',
+      orcamento: { url: 'orcamento.html?para=Erika%20Lima', titulo: 'Orçamento da landing page', texto: 'Confira os planos, valores de implantação e mensalidades para seguir com o projeto.' },
       versoes: [
         { titulo: 'Editorial · O Dossiê', data: '30 jun 2026', status: 'analise', url: 'modelos/erika-lima/landing-1a-editorial.html', preview: true, notas: 'Tom de revista de arquitetura: serifa elegante, índice de serviços e paleta clara em tons de areia. Sofisticada e atemporal.' },
         { titulo: 'Movimento', data: '30 jun 2026', status: 'analise', url: 'modelos/erika-lima/landing-1b-premium.html', preview: true, notas: 'Mais ousada: fundo escuro, tipografia grande e marcante, linha do tempo de serviços. Transmite energia e crescimento.' },
@@ -192,6 +200,11 @@
       </div>`;
   } else {
     const roman = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+    const proposal = client.orcamento || {
+      url: `orcamento.html?para=${encodeURIComponent(client.nome)}`,
+      titulo: 'Orçamento da landing page',
+      texto: 'Confira os planos, valores de implantação e mensalidades para seguir com o projeto.'
+    };
     app.innerHTML = `
       <section class="hero">
         <div class="kicker">Para ${client.nome} · ${client.projeto}</div>
@@ -228,6 +241,11 @@
               </a>
             </div>
           </article>`).join('')}
+        <div class="proposal-callout">
+          <h2>${proposal.titulo}</h2>
+          <p>${proposal.texto}</p>
+          <a class="btn" href="${proposal.url}" target="_blank" rel="noopener">Ver orçamento <span>→</span></a>
+        </div>
       </section>`;
 
     // reveal no scroll + carrega a prévia só quando o cartão aparece (uma de cada vez)

@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>LCA · Proposta — Landing page profissional</title>
+  <title>LCA &middot; Or&ccedil;amento &mdash; Landing Page + CRM</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,31 +35,33 @@
     .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
     h1{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.4vw,78px);line-height:.98;letter-spacing:-.02em;margin:0}
     h1 em{color:var(--accent);font-style:italic}
-    .hero p{max-width:560px;font-size:16.5px;line-height:1.6;color:var(--ink-soft);margin:24px 0 0;text-wrap:pretty}
+    .hero p{max-width:620px;font-size:16.5px;line-height:1.6;color:var(--ink-soft);margin:24px 0 0;text-wrap:pretty}
 
     .sec-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;align-items:baseline;gap:14px;margin:64px 0 26px}
     .sec-label b{color:var(--accent);font-weight:500}
 
-    /* planos */
-    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+    .plans{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch}
     .plan{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:30px 26px;display:flex;flex-direction:column;position:relative}
     .plan.reco{border-color:var(--accent);box-shadow:0 26px 60px -34px rgba(58,47,36,.5)}
     .plan .ribbon{position:absolute;top:-11px;left:26px;background:var(--accent);color:#fff;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
     .plan h3{font-family:var(--serif);font-size:30px;font-weight:500;margin:0}
     .plan .tag{font-size:13.5px;color:var(--muted);margin:6px 0 20px;min-height:38px}
-    .plan .price{display:flex;align-items:baseline;gap:6px;border-top:1px solid var(--line);padding-top:18px}
-    .plan .price .cifra{font-family:var(--mono);font-size:13px;color:var(--muted)}
-    .plan .price .val{font-family:var(--serif);font-size:44px;line-height:1;font-weight:500}
-    .plan .renov{font-family:var(--mono);font-size:11px;color:var(--muted);margin:10px 0 22px}
+    .price-row{border-top:1px solid var(--line);padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .label{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .old{color:var(--muted);font-size:13px;text-decoration:line-through;margin-bottom:2px}
+    .offer,.monthly{font-family:var(--serif);font-size:36px;line-height:1;font-weight:500}
+    .monthly small{font-family:var(--mono);font-size:11px;color:var(--muted)}
+    .plan .renov{font-family:var(--mono);font-size:11px;color:var(--muted);margin:14px 0 22px}
     .plan ul{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:11px;flex:1}
     .plan li{display:flex;gap:10px;font-size:14px;line-height:1.4;color:var(--ink-soft)}
     .plan li .ck{color:var(--accent);flex:none;font-weight:600}
     .plan li.head{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+    .ideal{border-top:1px solid var(--line);padding-top:18px;margin:0 0 22px;color:var(--ink-soft);font-size:14px;line-height:1.5}
+    .ideal strong{display:block;color:var(--ink);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px;font-weight:500}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px 20px;border-radius:999px;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;transition:background .3s,transform .3s}
     .btn:hover{background:var(--accent);transform:translateY(-2px)}
     .plan.reco .btn{background:var(--accent)}
 
-    /* incluído / extras */
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:28px}
     .card h4{font-family:var(--serif);font-size:24px;font-weight:500;margin:0 0 16px}
@@ -67,31 +69,38 @@
     .card li{display:flex;gap:10px;font-size:14.5px;color:var(--ink-soft);line-height:1.4}
     .card li .ck{color:var(--accent);flex:none}
     .muted-note{font-size:13px;color:var(--muted);margin-top:14px;line-height:1.5}
+    .breakdown{display:grid;gap:11px;margin-top:4px}
+    .breakdown .row{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px;color:var(--ink-soft);font-size:14.5px}
+    .breakdown .row strong{color:var(--ink);font-weight:600;white-space:nowrap}
+    .breakdown .total{font-family:var(--serif);font-size:28px;color:var(--ink);display:flex;justify-content:space-between;gap:16px;margin-top:4px}
 
-    /* etapas */
     .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
     .step{padding:22px;border-left:2px solid var(--accent);background:var(--paper);border-radius:0 10px 10px 0}
     .step .n{font-family:var(--serif);font-style:italic;font-size:26px;color:var(--accent)}
     .step h5{margin:6px 0 6px;font-size:16px}
     .step p{margin:0;font-size:13px;color:var(--ink-soft);line-height:1.5}
 
-    /* condições */
     .terms{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
     .term .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
     .term .v{font-family:var(--serif);font-size:22px;line-height:1.25}
 
     .cta-final{margin-top:56px;background:var(--ink);color:var(--bg);border-radius:16px;padding:52px 40px;text-align:center}
     .cta-final h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4vw,50px);margin:0 0 14px;line-height:1.05}
-    .cta-final p{color:#cabfb1;max-width:440px;margin:0 auto 28px;font-size:15.5px;line-height:1.6}
+    .cta-final p{color:#cabfb1;max-width:460px;margin:0 auto 28px;font-size:15.5px;line-height:1.6}
     .cta-final .btn{width:auto;background:var(--accent);color:#fff;padding:17px 34px}
 
     footer{margin-top:60px;padding-top:26px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
     footer a{border-bottom:1px solid var(--accent);padding-bottom:2px;color:var(--ink)}
 
     @media (max-width:900px){
-      .plans{grid-template-columns:1fr;gap:16px}
-      .grid2,.steps,.terms{grid-template-columns:1fr}
+      .plans,.grid2,.steps,.terms{grid-template-columns:1fr}
       .plan .tag{min-height:0}
+    }
+    @media (max-width:560px){
+      .wrap{padding:0 18px 70px}
+      .price-row{grid-template-columns:1fr}
+      .offer,.monthly{font-size:34px}
+      .breakdown .row,.breakdown .total{flex-direction:column;gap:4px}
     }
   </style>
 </head>
@@ -100,142 +109,151 @@
     <header>
       <a class="logo" href="index.html">
         <span class="mark">L</span>
-        <span class="name">LCA · STUDIO</span>
+        <span class="name">LCA &middot; STUDIO</span>
       </a>
       <span class="header-meta" id="validade">Proposta comercial</span>
     </header>
 
     <section class="hero">
-      <div class="kicker">Proposta · Landing page profissional</div>
-      <h1>Sua presença online,<br/><em>pronta para vender.</em></h1>
-      <p id="saud">Uma página profissional, rápida e feita para converter visitantes em clientes — com tudo que você precisa para colocar no ar: domínio, hospedagem e suporte inclusos no primeiro ano.</p>
+      <div class="kicker">Or&ccedil;amento sugerido &middot; Landing Page + CRM</div>
+      <h1>Sua landing page,<br/><em>com ou sem CRM.</em></h1>
+      <p id="saud">Oferta direta para colocar sua empresa no ar com uma p&aacute;gina profissional e bot&atilde;o para WhatsApp. Para quem quer organizar os contatos recebidos, o Plano 2 inclui um CRM de leads simples e pronto para uso.</p>
     </section>
 
-    <div class="sec-label"><b>§ I</b> Planos</div>
+    <div class="sec-label"><b>&sect; I</b> Planos</div>
     <section class="plans">
-      <!-- Essencial -->
       <div class="plan">
-        <h3>Essencial</h3>
-        <div class="tag">Para colocar sua marca no ar com uma página que converte.</div>
-        <div class="price"><span class="cifra">R$</span><span class="val" data-price="1890">1.890</span></div>
-        <div class="renov">pagamento único · renovação R$ 490/ano (a partir do 2º ano)</div>
+        <h3>Plano 1 &mdash; Landing Page</h3>
+        <div class="tag">Quem quer uma p&aacute;gina profissional com bot&atilde;o para WhatsApp.</div>
+        <div class="price-row">
+          <div>
+            <div class="label">Implanta&ccedil;&atilde;o</div>
+            <div class="old">De R$ 1.000,00</div>
+            <div class="offer">R$ 500,00</div>
+          </div>
+          <div>
+            <div class="label">Mensalidade</div>
+            <div class="monthly">R$ 54,99<small>/m&ecirc;s</small></div>
+          </div>
+        </div>
+        <div class="renov">Oferta para fechamento imediato.</div>
         <ul>
-          <li><span class="ck">✓</span> Landing page profissional (1 página), responsiva no celular e no desktop</li>
-          <li><span class="ck">✓</span> Domínio + hospedagem + SSL (https) inclusos no 1º ano</li>
-          <li><span class="ck">✓</span> E-mail profissional (contato@seudominio)</li>
-          <li><span class="ck">✓</span> Botão de contato direto no WhatsApp</li>
-          <li><span class="ck">✓</span> Otimização básica para o Google (SEO on-page)</li>
-          <li><span class="ck">✓</span> Publicação e suporte inicial</li>
+          <li><span class="ck">&check;</span> Cria&ccedil;&atilde;o de landing page profissional</li>
+          <li><span class="ck">&check;</span> P&aacute;gina responsiva para celular, tablet e computador</li>
+          <li><span class="ck">&check;</span> Apresenta&ccedil;&atilde;o da empresa</li>
+          <li><span class="ck">&check;</span> Se&ccedil;&atilde;o de produtos ou servi&ccedil;os</li>
+          <li><span class="ck">&check;</span> Bot&atilde;o com link direto para WhatsApp</li>
+          <li><span class="ck">&check;</span> Hospedagem, manuten&ccedil;&atilde;o b&aacute;sica e dom&iacute;nio</li>
+          <li><span class="ck">&check;</span> Certificado de seguran&ccedil;a SSL</li>
+          <li><span class="ck">&check;</span> Publica&ccedil;&atilde;o do site</li>
         </ul>
-        <a class="btn" data-plano="Essencial">Escolher Essencial</a>
+        <p class="ideal"><strong>Ideal para</strong>Empresas que querem ter uma presen&ccedil;a profissional na internet e receber contatos diretamente pelo WhatsApp.</p>
+        <a class="btn" data-plano="Plano 1 - Landing Page">Escolher Plano 1</a>
       </div>
 
-      <!-- Profissional -->
       <div class="plan reco">
-        <span class="ribbon">Mais escolhido</span>
-        <h3>Profissional</h3>
-        <div class="tag">Você mesmo edita textos e imagens quando quiser.</div>
-        <div class="price"><span class="cifra">R$</span><span class="val" data-price="2890">2.890</span></div>
-        <div class="renov">pagamento único · renovação R$ 690/ano (a partir do 2º ano)</div>
+        <span class="ribbon">Mais completo</span>
+        <h3>Plano 2 &mdash; Landing Page + CRM de Leads</h3>
+        <div class="tag">Quem quer p&aacute;gina + painel para gerenciar contatos.</div>
+        <div class="price-row">
+          <div>
+            <div class="label">Implanta&ccedil;&atilde;o</div>
+            <div class="old">De R$ 1.000,00</div>
+            <div class="offer">R$ 500,00</div>
+          </div>
+          <div>
+            <div class="label">Mensalidade</div>
+            <div class="monthly">R$ 114,89<small>/m&ecirc;s</small></div>
+          </div>
+        </div>
+        <div class="renov">Oferta para fechamento imediato.</div>
         <ul>
-          <li class="head">Tudo do Essencial, mais:</li>
-          <li><span class="ck">✓</span> Painel para editar textos, serviços e imagens da landing</li>
-          <li><span class="ck">✓</span> Blocos/seções extras (depoimentos, FAQ, galeria)</li>
-          <li><span class="ck">✓</span> Formulário de contato (além do WhatsApp)</li>
-          <li><span class="ck">✓</span> Google Analytics (métricas de visitas)</li>
+          <li class="head">Inclui tudo do Plano 1, mais:</li>
+          <li><span class="ck">&check;</span> P&aacute;gina administrativa com login</li>
+          <li><span class="ck">&check;</span> Painel para visualizar os leads recebidos</li>
+          <li><span class="ck">&check;</span> Cadastro autom&aacute;tico dos contatos vindos da landing page</li>
+          <li><span class="ck">&check;</span> Nome, telefone, e-mail e mensagem do interessado</li>
+          <li><span class="ck">&check;</span> Origem do lead: site, WhatsApp, Instagram ou Facebook</li>
+          <li><span class="ck">&check;</span> Status do lead: novo, em atendimento, vendido ou perdido</li>
+          <li><span class="ck">&check;</span> Campo de observa&ccedil;&otilde;es e hist&oacute;rico b&aacute;sico de atendimento</li>
+          <li><span class="ck">&check;</span> Organiza&ccedil;&atilde;o dos contatos em formato de CRM</li>
+          <li><span class="ck">&check;</span> Assinatura do CRM por apenas R$ 59,90 adicionais/m&ecirc;s</li>
         </ul>
-        <a class="btn" data-plano="Profissional">Escolher Profissional</a>
-      </div>
-
-      <!-- Completo -->
-      <div class="plan">
-        <h3>Completo</h3>
-        <div class="tag">Com gestão dos leads que chegam pela sua página.</div>
-        <div class="price"><span class="cifra">R$</span><span class="val" data-price="4290">4.290</span></div>
-        <div class="renov">pagamento único · renovação R$ 990/ano (a partir do 2º ano)</div>
-        <ul>
-          <li class="head">Tudo do Profissional, mais:</li>
-          <li><span class="ck">✓</span> CRM de leads: cada contato vira um registro organizado</li>
-          <li><span class="ck">✓</span> Funil de etapas (novo → em contato → fechado)</li>
-          <li><span class="ck">✓</span> Relatórios simples e exportação</li>
-          <li><span class="ck">✓</span> Prioridade no suporte</li>
-        </ul>
-        <a class="btn" data-plano="Completo">Escolher Completo</a>
+        <p class="ideal"><strong>Ideal para</strong>Empresas que n&atilde;o querem apenas receber mensagens, mas tamb&eacute;m organizar contatos, acompanhar oportunidades e evitar perder clientes interessados.</p>
+        <a class="btn" data-plano="Plano 2 - Landing Page + CRM de Leads">Escolher Plano 2</a>
       </div>
     </section>
 
-    <div class="sec-label"><b>§ II</b> Incluído em todos os planos (1º ano)</div>
+    <div class="sec-label"><b>&sect; II</b> Composi&ccedil;&atilde;o da mensalidade</div>
     <section class="grid2">
       <div class="card">
-        <h4>Já vem pronto para o ar</h4>
-        <ul>
-          <li><span class="ck">✓</span> Registro do domínio (.com.br ou .com)</li>
-          <li><span class="ck">✓</span> Hospedagem + certificado de segurança (SSL/https)</li>
-          <li><span class="ck">✓</span> Configuração, publicação e testes</li>
-          <li><span class="ck">✓</span> Página otimizada para carregar rápido</li>
-        </ul>
-        <p class="muted-note">A partir do 2º ano, a renovação (domínio + hospedagem + manutenção) tem o valor indicado em cada plano.</p>
+        <h4>Plano 2: total mensal</h4>
+        <div class="breakdown">
+          <div class="row"><span>Hospedagem, manuten&ccedil;&atilde;o e dom&iacute;nio</span><strong>R$ 54,99</strong></div>
+          <div class="row"><span>Assinatura do CRM de leads</span><strong>R$ 59,90</strong></div>
+          <div class="total"><span>Total</span><strong>R$ 114,89/m&ecirc;s</strong></div>
+        </div>
       </div>
       <div class="card">
-        <h4>Extras opcionais (sob consulta)</h4>
+        <h4>Oferta de implanta&ccedil;&atilde;o</h4>
         <ul>
-          <li><span class="ck">+</span> Criação de identidade visual / logo</li>
-          <li><span class="ck">+</span> Redação dos textos (copywriting)</li>
-          <li><span class="ck">+</span> Banco de imagens premium</li>
-          <li><span class="ck">+</span> Páginas adicionais / integrações</li>
+          <li><span class="ck">&check;</span> Valor normal: R$ 1.000,00</li>
+          <li><span class="ck">&check;</span> Fechamento imediato: R$ 500,00</li>
+          <li><span class="ck">&check;</span> Mesma implanta&ccedil;&atilde;o promocional para os dois planos</li>
+          <li><span class="ck">&check;</span> Publica&ccedil;&atilde;o, configura&ccedil;&atilde;o e testes inclusos</li>
         </ul>
-        <p class="muted-note">Posso incluir qualquer um destes no orçamento — é só pedir.</p>
+        <p class="muted-note">A mensalidade mant&eacute;m o site online, cuidado tecnicamente e, no Plano 2, tamb&eacute;m libera o CRM de leads.</p>
       </div>
     </section>
 
-    <div class="sec-label"><b>§ III</b> Como funciona</div>
+    <div class="sec-label"><b>&sect; III</b> Como funciona</div>
     <section class="steps">
-      <div class="step"><div class="n">01</div><h5>Briefing</h5><p>Conversa rápida para entender seu negócio e reunir textos e imagens.</p></div>
-      <div class="step"><div class="n">02</div><h5>Design</h5><p>Crio a landing e te mostro para aprovação, no computador e no celular.</p></div>
-      <div class="step"><div class="n">03</div><h5>Ajustes</h5><p>Refinamos juntos até ficar do seu jeito.</p></div>
-      <div class="step"><div class="n">04</div><h5>No ar</h5><p>Publico no seu domínio, com tudo funcionando e testado.</p></div>
+      <div class="step"><div class="n">01</div><h5>Briefing</h5><p>Conversa r&aacute;pida para entender o neg&oacute;cio e reunir textos, imagens e contatos.</p></div>
+      <div class="step"><div class="n">02</div><h5>Landing</h5><p>Crio a p&aacute;gina e mostro para aprova&ccedil;&atilde;o no computador e no celular.</p></div>
+      <div class="step"><div class="n">03</div><h5>Ajustes</h5><p>Refinamos textos, se&ccedil;&otilde;es e chamadas at&eacute; ficar pronto para publicar.</p></div>
+      <div class="step"><div class="n">04</div><h5>No ar</h5><p>Publico no dom&iacute;nio, configuro SSL e deixo WhatsApp ou CRM funcionando.</p></div>
     </section>
 
-    <div class="sec-label"><b>§ IV</b> Condições</div>
+    <div class="sec-label"><b>&sect; IV</b> Condi&ccedil;&otilde;es</div>
     <section class="terms">
-      <div class="term"><div class="lbl">Prazo</div><div class="v">5 a 10 dias úteis após o material</div></div>
-      <div class="term"><div class="lbl">Pagamento</div><div class="v">50% para iniciar + 50% na entrega · Pix ou cartão</div></div>
-      <div class="term"><div class="lbl">Validade</div><div class="v">Proposta válida por 15 dias</div></div>
+      <div class="term"><div class="lbl">Prazo</div><div class="v">5 a 10 dias &uacute;teis ap&oacute;s o material</div></div>
+      <div class="term"><div class="lbl">Implanta&ccedil;&atilde;o</div><div class="v">R$ 500,00 no fechamento imediato</div></div>
+      <div class="term"><div class="lbl">Mensalidade</div><div class="v">Plano 1: R$ 54,99/m&ecirc;s<br>Plano 2: R$ 114,89/m&ecirc;s</div></div>
     </section>
 
     <section class="cta-final">
-      <h2>Vamos colocar sua página no ar?</h2>
-      <p>Escolha o plano ideal e me chame no WhatsApp — respondo rápido e já damos início.</p>
+      <h2>Vamos colocar sua p&aacute;gina no ar?</h2>
+      <p>Escolha o plano ideal e me chame no WhatsApp. J&aacute; seguimos com os pr&oacute;ximos passos para publicar sua landing page.</p>
       <a class="btn" data-plano="">Falar no WhatsApp</a>
     </section>
 
     <footer>
-      <span>© 2026 Leandro Cesar de Abreu · LCA Studio</span>
-      <span>Dúvidas? <a href="https://wa.me/5546999425015" target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:leandrocesardeabreu@gmail.com">e-mail</a></span>
+      <span>&copy; 2026 Leandro Cesar de Abreu &middot; LCA Studio</span>
+      <span>D&uacute;vidas? <a href="https://wa.me/5546999425015" target="_blank" rel="noopener">WhatsApp</a> &middot; <a href="mailto:leandrocesardeabreu@gmail.com">e-mail</a></span>
     </footer>
   </div>
 
   <script>
-    // Personalização: orcamento.html?para=Nome%20do%20Cliente
+    // Personalizacao: orcamento.html?para=Nome%20do%20Cliente
     const params = new URLSearchParams(location.search);
     const para = params.get('para');
     if (para) {
       document.getElementById('saud').insertAdjacentHTML('afterbegin',
-        `<strong style="font-weight:500">Olá, ${para}!</strong> `);
-      document.title = 'LCA · Proposta — ' + para;
+        `<strong style="font-weight:500">Ol\u00e1, ${para}!</strong> `);
+      document.title = 'LCA \u00b7 Or\u00e7amento - ' + para;
     }
     // Data de validade (hoje + 15 dias)
     const d = new Date(); d.setDate(d.getDate() + 15);
     document.getElementById('validade').textContent =
-      'Válida até ' + d.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' }).replace('.', '');
+      'V\u00e1lida at\u00e9 ' + d.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', year:'numeric' }).replace('.', '');
 
-    // Botões → WhatsApp com mensagem por plano
+    // Botoes -> WhatsApp com mensagem por plano
     const FONE = '5546999425015';
     document.querySelectorAll('[data-plano]').forEach(a => {
       const plano = a.getAttribute('data-plano');
       const msg = plano
-        ? `Olá, Leandro! Vi a proposta e quero o plano ${plano} da landing page.`
-        : `Olá, Leandro! Vi a proposta da landing page e quero conversar.`;
+        ? `Ol\u00e1, Leandro! Vi a proposta e quero o ${plano}.`
+        : `Ol\u00e1, Leandro! Vi a proposta de Landing Page + CRM e quero conversar.`;
       a.href = `https://wa.me/${FONE}?text=${encodeURIComponent(msg)}`;
       a.target = '_blank'; a.rel = 'noopener';
     });

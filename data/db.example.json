@@ -15,6 +15,7 @@
       "nome": "Érika Lima",
       "projeto": "Landing page · Consultoria Contábil",
       "saudacao": "Érika, preparei quatro direções de design para a sua landing page, cada uma com uma personalidade própria. Navegue em todas com calma — no computador e no celular — e me diga qual combina mais com a sua marca.",
+      "orcamento": { "url": "orcamento.html?para=Erika%20Lima", "titulo": "Orçamento da landing page", "texto": "Confira os planos, valores de implantação e mensalidades para seguir com o projeto." },
       "versoes": [
         { "titulo": "Editorial · O Dossiê", "data": "30 jun 2026", "status": "analise", "url": "modelos/erika-lima/landing-1a-editorial.html", "preview": true, "notas": "Tom de revista de arquitetura: serifa elegante, índice de serviços e paleta clara em tons de areia. Sofisticada e atemporal." },
         { "titulo": "Movimento", "data": "30 jun 2026", "status": "analise", "url": "modelos/erika-lima/landing-1b-premium.html", "preview": true, "notas": "Mais ousada: fundo escuro, tipografia grande e marcante, linha do tempo de serviços. Transmite energia e crescimento." },
